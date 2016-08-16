@@ -1,0 +1,2 @@
+<?= $share->sharedContent->getPolymorphicRelation()->getWallOut(); ?>
+
