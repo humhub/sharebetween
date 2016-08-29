@@ -39,5 +39,3 @@ class ShareLink extends \yii\base\Widget
     }
 
 }
-
-?>
