@@ -18,5 +18,3 @@ class StreamEntry extends \humhub\modules\content\widgets\WallEntry
     }
 
 }
-
-?>

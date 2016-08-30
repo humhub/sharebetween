@@ -7,7 +7,7 @@ use yii\bootstrap\ActiveForm;
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title"
-                id="myModalLabel"><?php echo Yii::t('SpaceModule.views_space_invite', '<strong>Share</strong> content'); ?></h4>
+                id="myModalLabel"><?php echo Yii::t('SharebetweenModule.base', '<strong>Share</strong> content'); ?></h4>
         </div>
         <div class="modal-body">
 
@@ -15,10 +15,10 @@ use yii\bootstrap\ActiveForm;
             <div class="text-center">
                 <ul id="tabs" class="nav nav-tabs tabs-center" data-tabs="tabs">
                     <li class="active tab-internal"><a href="#internal"
-                                                       data-toggle="tab"><?php echo Yii::t('SpaceModule.views_space_invite', 'On space'); ?></a>
+                                                       data-toggle="tab"><?php echo Yii::t('SharebetweenModule.base', 'On space'); ?></a>
                     </li>
                     <li class="tab-external"><a href="#share_profile"
-                                                data-toggle="tab"><?php echo Yii::t('SpaceModule.views_space_invite', 'On your profile'); ?></a>
+                                                data-toggle="tab"><?php echo Yii::t('SharebetweenModule.base', 'On your profile'); ?></a>
                     </li>
                 </ul>
             </div>
@@ -28,7 +28,7 @@ use yii\bootstrap\ActiveForm;
                 <div class="tab-pane active" id="internal">
                     <?php $form = ActiveForm::begin(); ?>
 
-                    <?php echo Yii::t('SpaceModule.views_space_invite', 'To invite users to this space, please type their names below to find and pick them.'); ?>
+                    <?php echo Yii::t('SharebetweenModule.base', 'To share this content with other spaces, please type their names below to find and pick them.'); ?>
 
                     <br/><br/>
 
@@ -39,7 +39,7 @@ use yii\bootstrap\ActiveForm;
 
                         <?php
                         echo \humhub\widgets\AjaxButton::widget([
-                            'label' => Yii::t('SpaceModule.views_space_invite', 'Share1'),
+                            'label' => Yii::t('SharebetweenModule.base', 'Share'),
                             'ajaxOptions' => [
                                 'type' => 'POST',
                                 'beforeSend' => new yii\web\JsExpression('function(){ setModalLoader(); }'),
@@ -52,7 +52,7 @@ use yii\bootstrap\ActiveForm;
                         ]);
                         ?>
                         <button type="button" class="btn btn-primary"
-                                data-dismiss="modal"><?php echo Yii::t('SpaceModule.views_space_invite', 'Close'); ?></button>
+                                data-dismiss="modal"><?php echo Yii::t('SharebetweenModule.base', 'Close'); ?></button>
                     </div>                    
                     <?php ActiveForm::end(); ?>
 
@@ -66,7 +66,7 @@ use yii\bootstrap\ActiveForm;
 
                         <?php
                         echo \humhub\widgets\AjaxButton::widget([
-                            'label' => Yii::t('SpaceModule.views_space_invite', 'Share'),
+                            'label' => Yii::t('SharebetweenModule.base', 'Share'),
                             'ajaxOptions' => [
                                 'type' => 'POST',
                                 'beforeSend' => new yii\web\JsExpression('function(){ setModalLoader(); }'),
@@ -79,7 +79,7 @@ use yii\bootstrap\ActiveForm;
                         ]);
                         ?>
                         <button type="button" class="btn btn-primary"
-                                data-dismiss="modal"><?php echo Yii::t('SpaceModule.views_space_invite', 'Close'); ?></button>
+                                data-dismiss="modal"><?php echo Yii::t('SharebetweenModule.base', 'Close'); ?></button>
 
                         <?php ActiveForm::end(); ?>
                     </div>
@@ -116,11 +116,10 @@ use yii\bootstrap\ActiveForm;
 
     $('.tab-internal a').on('shown.bs.tab', function (e) {
         $('#invite_tag_input_field').focus();
-    })
+    });
 
     $('.tab-external a').on('shown.bs.tab', function (e) {
         $('#email_invite').focus();
-    })
-
+    });
 
 </script>

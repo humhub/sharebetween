@@ -24,10 +24,6 @@ class ShareLink extends \yii\base\Widget
      */
     public function run()
     {
-        if (Yii::$app->controller instanceof ContentContainerController) {
-            return;
-        }
-        
         if ($this->content instanceof \humhub\modules\sharebetween\models\Share) {
             return;
         }
@@ -39,5 +35,3 @@ class ShareLink extends \yii\base\Widget
     }
 
 }
-
-?>
