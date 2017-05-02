@@ -1,6 +1,6 @@
 <?php
 
-use yii
+use Yii;
 use yii\bootstrap\ActiveForm;
 
 ?>
@@ -35,7 +35,6 @@ use yii\bootstrap\ActiveForm;
                     <br/><br/>
 
                     <?= $form->field($model, 'space')->textInput(['id' => 'invite'])->label(false); ?>
-
 
                     <div class="modal-footer">
 
@@ -89,15 +88,11 @@ use yii\bootstrap\ActiveForm;
 
             </div>
 
-
         </div>
-
-
 
     </div>
 
 </div>
-
 
 <script type="text/javascript">
 
