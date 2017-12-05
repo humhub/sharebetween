@@ -32,10 +32,11 @@ class Share extends ContentActiveRecord
 
     public static function create(Content $content, ContentContainerActiveRecord $container)
     {
+ 
         if (self::hasShare($content, $container)) {
-            throw new \yii\web\HttpException(400, 'has share!');
+            return;
         }
-
+        
         $share = new self;
         $share->content_id = $content->id;
         $share->content->container = $container;
@@ -59,5 +60,30 @@ class Share extends ContentActiveRecord
             $share->delete();
         }
     }
+    
+  
+    /**
+     * Checks if the user can share this content.
+     * This is only allowed for workspace owner.
+     *
+     * @return boolean
+     */
+    public function canShare(Content $content)
+    {
+        
+        if ($content->isArchived()) {
+            return false;
+        }
+        
+        // anybody can share 
+        //return $content->getContainer()->permissionManager->can(new \humhub\modules\content\permissions\ManageContent());
+        return true;
+    }
+    
+    
+    
+    
+    
+
 
 }
