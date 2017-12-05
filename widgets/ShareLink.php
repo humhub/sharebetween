@@ -24,7 +24,7 @@ class ShareLink extends \yii\base\Widget
      */
     public function run()
     {
-        if ($this->content instanceof \humhub\modules\sharebetween\models\Share) {
+        if ($this->content instanceof \humhub\modules\sharebetween\models\Share || !\humhub\modules\sharebetween\models\Share::canShare($this->content->content)) {
             return;
         }
         
