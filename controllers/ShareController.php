@@ -7,34 +7,108 @@ use humhub\modules\content\models\Content;
 use humhub\modules\sharebetween\models\ShareForm;
 use humhub\modules\sharebetween\models\Share;
 
+use humhub\modules\space\models;
+
+
+use humhub\compat\HForm;
+
+
+
+
 class ShareController extends \humhub\components\Controller
 {
-
+    
+    public function behaviors()
+    {
+        return [
+            'acl' => [
+                'class' => \humhub\components\behaviors\AccessControl::className()
+            ]
+        ];
+    }
+    
     public function actionIndex()
     {
-        $model = new ShareForm();
+        $error =  false;
+        $space = new ShareForm();
         $content = Content::findOne(['id' => Yii::$app->request->get('id')]);
-
-        if (!$content->canView()) {
+         
+      /*  if (!$content->canView()) {
             throw new \yii\web\HttpException('400', 'Permission denied!');
-        }
-
+        }*/
+        
         if (Yii::$app->request->isPost) {
-            if (Yii::$app->request->get('self') == 1) {
-                Share::create($content, Yii::$app->user->getIdentity());
-                return $this->renderAjax('success');
-            } else {
-                if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-                    foreach ($model->getSpaces() as $space) {
-                        Share::create($content, $space);
-                    }
+            $ShareForm = Yii::$app->request->post('ShareForm');
+            if ($ShareForm) {
+                if ($ShareForm['spaceSelection']) {
+                foreach ($ShareForm['spaceSelection'] as $guid) {
+                            $shareSpace = \humhub\modules\space\models\Space::findOne(['guid' => trim($guid)]);
+                            if ($shareSpace) {
+                                Share::create($content,$shareSpace); 
+                            }
+                        }
                     return $this->renderAjax('success');
-                }
-            }
+                    }  
+                    else{
+                      $error =  true;
+                    }
+             }
+        
         }
+        
 
 
-        return $this->renderAjax('index', ['content' => $content, 'model' => $model]);
+        // Build Form Definition
+        $definition = [];
+        
+        $definition['elements']['ShareForm'] = [
+            'type' => 'form',
+           // 'title' => 'Share',
+            
+            'elements' => [
+                
+                'spaceSelection' => [
+                    'id' => 'spaceselection',
+                    'type' => 'multiselectdropdown',
+                    'items' => ShareForm::getSpaceItems($content), ///Add
+
+                ]
+
+            ],
+        ];
+
+        // Buttons
+        $definition['buttons'] = array(
+            'save' => array(
+                'type' => 'submit',
+                'label' => Yii::t('AdminModule.controllers_UserController', 'Partager'),
+                'class' => 'btn btn-primary hidden',
+            ),
+        );
+        
+
+        
+        $form = new HForm($definition);
+        $form->models['ShareForm'] = $space;
+           
+         
+
+        return $this->renderAjax('index',
+            ['hForm' => $form,
+                'space' => $space,
+                'content' => $content,
+                'error'=> $error
+            ]);
     }
-
+    
 }
+
+
+
+
+
+
+
+
+
+
