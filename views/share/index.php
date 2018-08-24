@@ -1,13 +1,15 @@
 <?php
 
+use Yii;
 use yii\bootstrap\ActiveForm;
+
 ?>
 <div class="modal-dialog modal-dialog-small animated fadeIn">
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title"
-                id="myModalLabel"><?php echo Yii::t('SharebetweenModule.base', '<strong>Share</strong> content'); ?></h4>
+                id="myModalLabel"><?= Yii::t('SharebetweenModule.base', '<strong>Share</strong> content'); ?></h4>
         </div>
         <div class="modal-body">
 
@@ -15,10 +17,10 @@ use yii\bootstrap\ActiveForm;
             <div class="text-center">
                 <ul id="tabs" class="nav nav-tabs tabs-center" data-tabs="tabs">
                     <li class="active tab-internal"><a href="#internal"
-                                                       data-toggle="tab"><?php echo Yii::t('SharebetweenModule.base', 'On space'); ?></a>
+                                                       data-toggle="tab"><?= Yii::t('SharebetweenModule.base', 'On space'); ?></a>
                     </li>
                     <li class="tab-external"><a href="#share_profile"
-                                                data-toggle="tab"><?php echo Yii::t('SharebetweenModule.base', 'On your profile'); ?></a>
+                                                data-toggle="tab"><?= Yii::t('SharebetweenModule.base', 'On your profile'); ?></a>
                     </li>
                 </ul>
             </div>
@@ -28,17 +30,15 @@ use yii\bootstrap\ActiveForm;
                 <div class="tab-pane active" id="internal">
                     <?php $form = ActiveForm::begin(); ?>
 
-                    <?php echo Yii::t('SharebetweenModule.base', 'To share this content with other spaces, please type their names below to find and pick them.'); ?>
+                    <?= Yii::t('SharebetweenModule.base', 'To share this content with other spaces, please type their names below to find and pick them.'); ?>
 
                     <br/><br/>
 
-                    <?php echo $form->field($model, 'space')->textInput(['id' => 'invite'])->label(false); ?>
-
+                    <?= $form->field($model, 'space')->textInput(['id' => 'invite'])->label(false); ?>
 
                     <div class="modal-footer">
 
-                        <?php
-                        echo \humhub\widgets\AjaxButton::widget([
+                        <?= \humhub\widgets\AjaxButton::widget([
                             'label' => Yii::t('SharebetweenModule.base', 'Share'),
                             'ajaxOptions' => [
                                 'type' => 'POST',
@@ -52,20 +52,19 @@ use yii\bootstrap\ActiveForm;
                         ]);
                         ?>
                         <button type="button" class="btn btn-primary"
-                                data-dismiss="modal"><?php echo Yii::t('SharebetweenModule.base', 'Close'); ?></button>
+                                data-dismiss="modal"><?= Yii::t('SharebetweenModule.base', 'Close'); ?></button>
                     </div>                    
                     <?php ActiveForm::end(); ?>
 
                 </div>
                 <div class="tab-pane" id="share_profile">
                     <?php $form = ActiveForm::begin(); ?>
-                    <?php echo Yii::t('SharebetweenModule.base', 'Share this content directly on your profile.'); ?>
+                    <?= Yii::t('SharebetweenModule.base', 'Share this content directly on your profile.'); ?>
                     <br/><br/>
 
                     <div class="modal-footer">
 
-                        <?php
-                        echo \humhub\widgets\AjaxButton::widget([
+                        <?= \humhub\widgets\AjaxButton::widget([
                             'label' => Yii::t('SharebetweenModule.base', 'Share'),
                             'ajaxOptions' => [
                                 'type' => 'POST',
@@ -79,25 +78,21 @@ use yii\bootstrap\ActiveForm;
                         ]);
                         ?>
                         <button type="button" class="btn btn-primary"
-                                data-dismiss="modal"><?php echo Yii::t('SharebetweenModule.base', 'Close'); ?></button>
+                                data-dismiss="modal"><?= Yii::t('SharebetweenModule.base', 'Close'); ?></button>
 
                         <?php ActiveForm::end(); ?>
                     </div>
 
                 </div>
-                <?php echo \humhub\widgets\LoaderWidget::widget(['id' => 'invite-loader', 'cssClass' => 'loader-modal hidden']); ?>
+                <?= \humhub\widgets\LoaderWidget::widget(['id' => 'invite-loader', 'cssClass' => 'loader-modal hidden']); ?>
 
             </div>
 
-
         </div>
-
-
 
     </div>
 
 </div>
-
 
 <script type="text/javascript">
 
