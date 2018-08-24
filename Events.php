@@ -9,8 +9,9 @@
 namespace humhub\modules\sharebetween;
 
 use Yii;
+use yii\base\BaseObject;
 
-class Events extends \yii\base\Object
+class Events extends BaseObject
 {
 
     public static function onWallEntryControlsInit($event)
