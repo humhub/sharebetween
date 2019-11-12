@@ -22,7 +22,7 @@ $sharedContent = $object->sharedContent->getPolymorphicRelation();
             </ul>
 
             <p>
-                <?= Yii::t('SharebetweenModule.base', '{displayName} shared {contentType}.', ['displayName' => Html::a($user->displayName, $user->getUrl()), 'contentType' => Html::a($sharedContent->getContentName(), $sharedContent->content->getUrl())]); ?>
+                <?= Yii::t('SharebetweenModule.base', '{displayName} shared a {contentType}.', ['displayName' => Html::a($user->displayName, $user->getUrl(), ['style' => 'color: #e5c150']), 'contentType' => Html::a($sharedContent->getContentName(), $sharedContent->content->getUrl())]); ?>
             </p>
 
             <div class="content" id="wall_content_<?php echo $object->getUniqueId(); ?>">

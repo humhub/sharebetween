@@ -33,7 +33,7 @@ class Share extends ContentActiveRecord
     public static function create(Content $content, ContentContainerActiveRecord $container)
     {
         if (self::hasShare($content, $container)) {
-            throw new \yii\web\HttpException(400, 'has share!');
+            throw new \yii\web\HttpException(400, 'Shared!');
         }
 
         $share = new self;
