@@ -2,9 +2,12 @@
 
 use yii\helpers\Html;
 use humhub\modules\space\models\Space;
+use humhub\modules\user\models\User;
 use humhub\modules\content\components\ContentContainerController;
+use humhub\modules\content\widgets\WallEntry;
+use humhub\modules\content\widgets\WallEntryControls;
 
-$user = $object->content->user;
+//$user = $object->content->user;
 $container = $object->content->container;
 $sharedContent = $object->sharedContent->getPolymorphicRelation();
 ?>
