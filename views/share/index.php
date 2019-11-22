@@ -16,10 +16,10 @@ use yii\bootstrap\ActiveForm;
             <br/>
             <div class="text-center">
                 <ul id="tabs" class="nav nav-tabs tabs-center" data-tabs="tabs">
-                    <li class="active tab-internal"><a href="#internal"
+<!--                    <li class="active tab-internal"><a href="#internal"
                                                        data-toggle="tab"><?= Yii::t('SharebetweenModule.base', 'On space'); ?></a>
                     </li>
-                    <li class="tab-external"><a href="#share_profile"
+    -->                <li class="tab-external"><a href="#share_profile"
                                                 data-toggle="tab"><?= Yii::t('SharebetweenModule.base', 'On your profile'); ?></a>
                     </li>
                 </ul>
@@ -27,7 +27,7 @@ use yii\bootstrap\ActiveForm;
             <br/>
 
             <div class="tab-content">
-                <div class="tab-pane active" id="internal">
+<!--                <div class="tab-pane active" id="internal">
                     <?php $form = ActiveForm::begin(); ?>
 
                     <?= Yii::t('SharebetweenModule.base', 'To share this content with other spaces, please type their names below to find and pick them.'); ?>
@@ -57,7 +57,7 @@ use yii\bootstrap\ActiveForm;
                     <?php ActiveForm::end(); ?>
 
                 </div>
-                <div class="tab-pane" id="share_profile">
+-->                <div class="tab-pane" id="share_profile">
                     <?php $form = ActiveForm::begin(); ?>
                     <?= Yii::t('SharebetweenModule.base', 'Share this content directly on your profile.'); ?>
                     <br/><br/>

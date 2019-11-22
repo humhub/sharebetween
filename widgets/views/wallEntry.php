@@ -2,9 +2,12 @@
 
 use yii\helpers\Html;
 use humhub\modules\space\models\Space;
+use humhub\modules\user\models\User;
 use humhub\modules\content\components\ContentContainerController;
+use humhub\modules\content\widgets\WallEntry;
+use humhub\modules\content\widgets\WallEntryControls;
 
-$user = $object->content->user;
+//$user = $object->content->user;
 $container = $object->content->container;
 $sharedContent = $object->sharedContent->getPolymorphicRelation();
 ?>
@@ -22,7 +25,7 @@ $sharedContent = $object->sharedContent->getPolymorphicRelation();
             </ul>
 
             <p>
-                <?= Yii::t('SharebetweenModule.base', '{displayName} shared {contentType}.', ['displayName' => Html::a($user->displayName, $user->getUrl()), 'contentType' => Html::a($sharedContent->getContentName(), $sharedContent->content->getUrl())]); ?>
+                <?= Yii::t('SharebetweenModule.base', '{displayName} shared a {contentType}.', ['displayName' => Html::a($user->displayName, $user->getUrl(), ['style' => 'color: #e5c150']), 'contentType' => Html::a($sharedContent->getContentName(), $sharedContent->content->getUrl())]); ?>
             </p>
 
             <div class="content" id="wall_content_<?php echo $object->getUniqueId(); ?>">

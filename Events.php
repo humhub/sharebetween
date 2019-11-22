@@ -14,13 +14,13 @@ use yii\base\BaseObject;
 class Events extends BaseObject
 {
 
-    public static function onWallEntryControlsInit($event)
-    {
-        $stackWidget = $event->sender;
-        $content = $event->sender->object;
+//    public static function onWallEntryControlsInit($event)
+//    {
+//        $stackWidget = $event->sender;
+//        $content = $event->sender->object;
 
-        $stackWidget->addWidget(widgets\ShareLink::className(), ['content' => $content]);
-    }
+//        $stackWidget->addWidget(widgets\ShareLink::className(), ['content' => $content]);
+//    }
 
     public static function onContentDelete($event)
     {
@@ -28,6 +28,14 @@ class Events extends BaseObject
         foreach ($shares as $share) {
             $share->delete();
         }
+    }
+
+    public static function onWallEntryLinksInit($event)
+    {
+        $stackWidget = $event->sender;
+        $content = $event->sender->object;
+
+        $stackWidget->addWidget(widgets\ShareLink::className(), ['content' => $content]);
     }
 
 }
