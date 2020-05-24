@@ -10,7 +10,7 @@
 
         </div>
         <div class="modal-footer">
-//modal should automatically fade out without needing to press ok
+            <!-- //modal should automatically fade out without needing to press ok -->
             <button type="button" class="btn btn-primary"
                     data-dismiss="modal"><?php echo Yii::t('SharebetweenModule.base', 'Ok'); ?></button>
 
