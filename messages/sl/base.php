@@ -2,9 +2,9 @@
 
 return [
     '<strong>Share</strong> content' => '',
+    'Cancel' => '',
     'Close' => '',
     'OK' => '',
-    'Ok' => '',
     'On space' => '',
     'On your profile' => '',
     'Share' => '',
