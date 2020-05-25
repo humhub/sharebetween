@@ -16,13 +16,14 @@ class ShareController extends \humhub\components\Controller
         $content = Content::findOne(['id' => Yii::$app->request->get('id')]);
 
         if (!$content->canView()) {
-            throw new \yii\web\HttpException('400', 'Permission denied!');
+            // throw new \yii\web\HttpException('400', 'Permission denied!');
+            return $this->renderAjax('refused');
         }
 
         if (Yii::$app->request->isPost) {
             if (Yii::$app->request->get('self') == 1) {
-                        Yii::Error($content);
-                        Yii::Error(Yii::$app->user->getIdentity());
+                        // Yii::Error($content);
+                        // Yii::Error(Yii::$app->user->getIdentity());
                 if (Share::createShareToUserProfile($content, Yii::$app->user->getIdentity())) {
                     return $this->renderAjax('success');
                 } else {
@@ -35,7 +36,7 @@ class ShareController extends \humhub\components\Controller
                         // Yii::Error(var_dump($content));
                         // Yii::Error(var_dump($spaceContainer));
 
-                        Yii::Error('Begin try to share the post on Another Space.');
+                        // Yii::Error('Begin try to share the post on Another Space.');
                         if (Share::createShareToSpace($content, $spaceContainer)) {
                             $counter += 1;
                         }
