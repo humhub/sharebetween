@@ -1,6 +1,7 @@
 <?php
 
-use yii\helpers\Html;
+// use yii\helpers\Html;
+use humhub\libs\Html;
 use humhub\modules\space\models\Space;
 use humhub\modules\user\models\User;
 use humhub\modules\content\components\ContentContainerController;
@@ -26,7 +27,20 @@ $sharedContent = $object->sharedContent->getPolymorphicRelation();
 
             <div class="media-body">
                 <div class="media-heading">
-                    <?= Yii::t('SharebetweenModule.base', '{displayName} shared a {contentType}.', ['displayName' => Html::a($user->displayName, $user->getUrl(), ['style' => 'color: #e5c150']), 'contentType' => Html::a($sharedContent->getContentName(), $sharedContent->content->getUrl())]); ?>
+                    <?= Yii::t('SharebetweenModule.base',
+                        '{displayName} shared a {contentType}',
+                        [
+                            'displayName' => Html::a($user->displayName, $user->getUrl(), ['style' => 'color: #e5c150']),
+                            'contentType' => Html::a($sharedContent->getContentName(), $sharedContent->content->getUrl())
+                        ]
+                    ); ?>
+                    <?php if ($container): ?>
+                        <span class="viaLink">
+                            <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            <?= Html::containerLink($container); ?>
+                        </span>
+                    <?php endif; ?>
+
                 </div>
             </div>
 

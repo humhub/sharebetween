@@ -13,5 +13,5 @@ return [
     'To share this content with other spaces, please type their names below to find and pick them.' => '',
     'You can not allow to shared this post.' => '',
     'You have already shared this post.' => '',
-    '{displayName} shared a {contentType}.' => '',
+    '{displayName} shared a {contentType}' => '',
 ];
