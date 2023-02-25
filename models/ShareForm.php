@@ -12,19 +12,13 @@ use yii\base\Model;
  */
 class ShareForm extends Model
 {
-
-    /**
-     * Field for Invite GUIDs
-     *
-     * @var type
-     */
     public $space;
 
     public function rules()
     {
         return array(
             array('space', 'safe'),
-                //array('inviteExternal', 'checkInviteExternal'),
+            //array('inviteExternal', 'checkInviteExternal'),
         );
     }
 

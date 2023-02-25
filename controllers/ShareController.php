@@ -16,7 +16,7 @@ class ShareController extends \humhub\components\Controller
         $content = Content::findOne(['id' => Yii::$app->request->get('id')]);
 
         if (!$content->canView()) {
-            throw new \yii\web\HttpException('400', 'Permission denied!');
+            return $this->forbidden();
         }
 
         if (Yii::$app->request->isPost) {

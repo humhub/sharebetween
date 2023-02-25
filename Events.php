@@ -8,19 +8,12 @@
 
 namespace humhub\modules\sharebetween;
 
+use humhub\modules\content\components\ContentActiveRecord;
 use Yii;
 use yii\base\BaseObject;
 
 class Events extends BaseObject
 {
-
-//    public static function onWallEntryControlsInit($event)
-//    {
-//        $stackWidget = $event->sender;
-//        $content = $event->sender->object;
-
-//        $stackWidget->addWidget(widgets\ShareLink::className(), ['content' => $content]);
-//    }
 
     public static function onContentDelete($event)
     {
@@ -33,9 +26,11 @@ class Events extends BaseObject
     public static function onWallEntryLinksInit($event)
     {
         $stackWidget = $event->sender;
-        $content = $event->sender->object;
 
-        $stackWidget->addWidget(widgets\ShareLink::className(), ['content' => $content]);
+        /** @var ContentActiveRecord $record */
+        $record = $event->sender->object;
+
+        $stackWidget->addWidget(widgets\ShareLink::class, ['record' => $record]);
     }
 
 }

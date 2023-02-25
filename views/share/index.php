@@ -1,6 +1,5 @@
 <?php
 
-use Yii;
 use yii\bootstrap\ActiveForm;
 
 ?>

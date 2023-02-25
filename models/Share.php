@@ -2,6 +2,7 @@
 
 namespace humhub\modules\sharebetween\models;
 
+use humhub\modules\sharebetween\widgets\WallEntry;
 use Yii;
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\content\models\Content;
@@ -9,8 +10,10 @@ use humhub\modules\content\components\ContentContainerActiveRecord;
 
 class Share extends ContentActiveRecord
 {
-
-    public $wallEntryClass = 'humhub\modules\sharebetween\widgets\StreamEntry';
+    /**
+     * @inheritdoc
+     */
+    public $wallEntryClass = WallEntry::class;
     public $autoAddToWall = true;
 
     public static function tableName()
@@ -27,7 +30,12 @@ class Share extends ContentActiveRecord
 
     public function getSharedContent()
     {
-        return $this->hasOne(Content::className(), ['id' => 'content_id']);
+        return $this->hasOne(Content::class, ['id' => 'content_id']);
+    }
+
+    public function getContentRecord(): ContentActiveRecord
+    {
+        return $this->sharedContent->getModel();
     }
 
     public static function create(Content $content, ContentContainerActiveRecord $container)
@@ -58,6 +66,11 @@ class Share extends ContentActiveRecord
         foreach ($shares as $share) {
             $share->delete();
         }
+    }
+
+    public function getIcon()
+    {
+        return 'fa-share-alt';
     }
 
 }
