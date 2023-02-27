@@ -2,37 +2,36 @@
 
 namespace humhub\modules\sharebetween\controllers;
 
+use humhub\modules\sharebetween\services\ShareService;
+use humhub\modules\space\models\Space;
+use humhub\widgets\ModalClose;
 use Yii;
 use humhub\modules\content\models\Content;
 use humhub\modules\sharebetween\models\ShareForm;
-use humhub\modules\sharebetween\models\Share;
 
 class ShareController extends \humhub\components\Controller
 {
-
     public function actionIndex()
     {
-        $model = new ShareForm();
-        $content = Content::findOne(['id' => Yii::$app->request->get('id')]);
-
-        if (!$content->canView()) {
+        $content = Content::findOne(['id' => (int)Yii::$app->request->get('id')]);
+        if (!$content || !$content->canView()) {
             return $this->forbidden();
         }
 
-        if (Yii::$app->request->isPost) {
-            if (Yii::$app->request->get('self') == 1) {
-                Share::create($content, Yii::$app->user->getIdentity());
-                return $this->renderAjax('success');
-            } else {
-                if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-                    foreach ($model->getSpaces() as $space) {
-                        Share::create($content, $space);
-                    }
-                    return $this->renderAjax('success');
-                }
+        $shareService = new ShareService($content->getModel(), Yii::$app->user->getIdentity());
+        $model = new ShareForm();
+        foreach ($shareService->list() as $containerActiveRecord) {
+            if ($containerActiveRecord instanceof Space) {
+                $model->spaces[] = $containerActiveRecord->guid;
             }
         }
 
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $shareService->shareOnContainerGuids($model->spaces);
+
+            $entrySelector = '$(\'[data-ui-widget="stream.StreamEntry"][data-content-key='.$content->id.']\')';
+            return ModalClose::widget(['script' => 'humhub.modules.action.Component.instance('.$entrySelector.').reload()']);
+        }
 
         return $this->renderAjax('index', ['content' => $content, 'model' => $model]);
     }

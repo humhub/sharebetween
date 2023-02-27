@@ -2,19 +2,23 @@
 
 namespace humhub\modules\sharebetween\models;
 
+use humhub\modules\sharebetween\services\ShareService;
 use humhub\modules\sharebetween\widgets\WallEntry;
 use Yii;
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\content\models\Content;
-use humhub\modules\content\components\ContentContainerActiveRecord;
+use yii\web\IdentityInterface;
 
+/**
+ *
+ * @property $content_id int
+ */
 class Share extends ContentActiveRecord
 {
     /**
      * @inheritdoc
      */
     public $wallEntryClass = WallEntry::class;
-    public $autoAddToWall = true;
 
     public static function tableName()
     {
@@ -38,34 +42,15 @@ class Share extends ContentActiveRecord
         return $this->sharedContent->getModel();
     }
 
-    public static function create(Content $content, ContentContainerActiveRecord $container)
+
+    public function getShareService(?IdentityInterface $user)
     {
-        if (self::hasShare($content, $container)) {
-            throw new \yii\web\HttpException(400, 'Shared!');
+        if ($user === null) {
+            /** @var IdentityInterface $user */
+            $user = Yii::$app->user->getIdentity();
         }
 
-        $share = new self;
-        $share->content_id = $content->id;
-        $share->content->container = $container;
-        $share->save();
-    }
-
-    public static function hasShare(Content $content, ContentContainerActiveRecord $container)
-    {
-        $share = Share::find()->joinWith('content')->where(['sharebetween_share.content_id' => $content->id, 'content.contentcontainer_id' => $container->id])->one();
-        if ($share !== null) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public static function deleteShare(Content $content, ContentContainerActiveRecord $container)
-    {
-        $shares = Share::find()->joinWith('content')->where(['sharebetween_share.content_id' => $content->id, 'content.contentcontainer_id' => $container->id])->all();
-        foreach ($shares as $share) {
-            $share->delete();
-        }
+        return new ShareService($this->getContentRecord(), $user);
     }
 
     public function getIcon()

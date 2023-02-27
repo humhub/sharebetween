@@ -2,24 +2,45 @@
 
 namespace humhub\modules\sharebetween\models;
 
-use Yii;
+use humhub\modules\content\components\ContentContainerActiveRecord;
 use yii\base\Model;
 
-/**
- * @author Luke
- * @package humhub.modules_core.space.forms
- * @since 0.5
- */
 class ShareForm extends Model
 {
-    public $space;
+    public $spaces = [];
+    public $onMyProfile;
 
     public function rules()
     {
-        return array(
-            array('space', 'safe'),
-            //array('inviteExternal', 'checkInviteExternal'),
-        );
+        return [
+            ['spaces', 'safe'],
+            ['onMyProfile', 'boolean'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'spaces' => 'Spaces',
+            'onMyProfile' => 'Share this content on your profile stream'
+        ];
+    }
+
+    public function attributeHints()
+    {
+        return [
+            'spaces' => 'Select Spaces here on which the content is to be additionally displayed.',
+            'onMyProfile' => 'Content you create is automatically displayed on your profile.',
+        ];
+    }
+
+    public function load($data, $formName = null)
+    {
+        $load = parent::load($data, $formName);
+        if (!is_array($this->spaces)) {
+            $this->spaces = [];
+        }
+        return $load;
     }
 
 }
