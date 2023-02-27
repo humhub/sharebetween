@@ -26,7 +26,7 @@ class ShareLink extends Widget
         if (Yii::$app->user->isGuest) {
             return '';
         }
-        
+
         return Html::tag('span',
             Html::a(
                 Yii::t('SharebetweenModule.base', 'Share') . $this->getCounter(),
@@ -43,6 +43,6 @@ class ShareLink extends Widget
             return '';
         }
 
-        return ' (' . $count . ')';
+        return sprintf(' (%d)', $count);
     }
 }

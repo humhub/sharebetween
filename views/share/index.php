@@ -15,7 +15,7 @@ use humhub\modules\ui\form\widgets\ActiveForm;
 <?php $form = ActiveForm::begin([]); ?>
     <div class="modal-body">
         <?= $form->field($model, 'spaces')->widget(SpacePickerField::class)->label(false) ?>
-        <?= $form->field($model, 'onMyProfile')->checkbox() ?>
+        <?= $form->field($model, 'onProfile')->checkbox() ?>
     </div>
     <div class="modal-footer">
         <?= ModalButton::submitModal() ?>

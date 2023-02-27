@@ -8,13 +8,13 @@ use yii\base\Model;
 class ShareForm extends Model
 {
     public $spaces = [];
-    public $onMyProfile;
+    public $onProfile = false;
 
     public function rules()
     {
         return [
             ['spaces', 'safe'],
-            ['onMyProfile', 'boolean'],
+            ['onProfile', 'boolean'],
         ];
     }
 
@@ -22,7 +22,7 @@ class ShareForm extends Model
     {
         return [
             'spaces' => 'Spaces',
-            'onMyProfile' => 'Share this content on your profile stream'
+            'onProfile' => 'Share this content on your profile stream'
         ];
     }
 
@@ -30,7 +30,7 @@ class ShareForm extends Model
     {
         return [
             'spaces' => 'Select Spaces here on which the content is to be additionally displayed.',
-            'onMyProfile' => 'Content you create is automatically displayed on your profile.',
+            'onProfile' => 'Content you create is automatically displayed on your profile.',
         ];
     }
 

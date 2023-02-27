@@ -25,12 +25,19 @@ class ShareController extends \humhub\components\Controller
                 $model->spaces[] = $containerActiveRecord->guid;
             }
         }
+        if ($shareService->exist(Yii::$app->user->getIdentity())) {
+            $model->onProfile = true;
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $shareService->shareOnContainerGuids($model->spaces);
+            if ($model->onProfile) {
+                $shareService->shareOnContainerGuids(array_merge($model->spaces, [Yii::$app->user->getIdentity()->guid]));
+            } else {
+                $shareService->shareOnContainerGuids($model->spaces);
+            }
 
-            $entrySelector = '$(\'[data-ui-widget="stream.StreamEntry"][data-content-key='.$content->id.']\')';
-            return ModalClose::widget(['script' => 'humhub.modules.action.Component.instance('.$entrySelector.').reload()']);
+            $entrySelector = '$(\'[data-ui-widget="stream.StreamEntry"][data-content-key=' . $content->id . ']\')';
+            return ModalClose::widget(['script' => 'humhub.modules.action.Component.instance(' . $entrySelector . ').reload()']);
         }
 
         return $this->renderAjax('index', ['content' => $content, 'model' => $model]);
