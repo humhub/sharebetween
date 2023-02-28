@@ -5,7 +5,9 @@ namespace humhub\modules\sharebetween\services;
 use humhub\modules\content\components\ActiveQueryContent;
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\content\components\ContentContainerActiveRecord;
+use humhub\modules\content\models\Content;
 use humhub\modules\content\models\ContentContainer;
+use humhub\modules\post\permissions\CreatePost;
 use humhub\modules\sharebetween\models\Share;
 use humhub\modules\space\models\Space;
 use yii\web\IdentityInterface;
@@ -62,7 +64,14 @@ final class ShareService
 
     public function canCreate(ContentContainerActiveRecord $container): bool
     {
-        // Check for Post Permission
+        if ($this->record->content->visibility !== Content::VISIBILITY_PUBLIC) {
+            return false;
+        }
+
+        if (!$container->getPermissionManager($this->user)->can(CreatePost::class)) {
+            return false;
+        }
+
         return true;
     }
 
@@ -76,8 +85,7 @@ final class ShareService
     public function delete(ContentContainerActiveRecord $container): void
     {
         foreach ($this->getShareByContainer($container)->all() as $share) {
-            print "del share: " . $share->id . "\n";
-            $share->delete();
+            $share->hardDelete();
         }
     }
 

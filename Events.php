@@ -9,6 +9,8 @@
 namespace humhub\modules\sharebetween;
 
 use humhub\modules\content\components\ContentActiveRecord;
+use humhub\modules\content\events\ContentEvent;
+use humhub\modules\sharebetween\models\Share;
 use Yii;
 use yii\base\BaseObject;
 
@@ -17,11 +19,31 @@ class Events extends BaseObject
 
     public static function onContentDelete($event)
     {
-        $shares = models\Share::findAll(['content_id' => $event->sender->content->id]);
+        /** @var ContentActiveRecord $record */
+        $record = $event->sender;
+
+        if ($record->content->object_model === Share::class) {
+            return;
+        }
+
+        $shares = models\Share::findAll(['content_id' => $record->content->id]);
         foreach ($shares as $share) {
-            $share->delete();
+            $share->hardDelete();
         }
     }
+
+    public static function onContentSoftDelete(ContentEvent $event)
+    {
+        if ($event->content->object_model === Share::class) {
+            return;
+        }
+
+        $shares = models\Share::findAll(['content_id' => $event->content->id]);
+        foreach ($shares as $share) {
+            $share->hardDelete();
+        }
+    }
+
 
     public static function onWallEntryLinksInit($event)
     {
