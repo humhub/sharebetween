@@ -4,6 +4,7 @@ namespace humhub\modules\sharebetween\widgets;
 
 use humhub\libs\Html;
 use humhub\modules\content\components\ContentActiveRecord;
+use humhub\modules\content\models\Content;
 use humhub\modules\sharebetween\models\Share;
 use humhub\modules\sharebetween\services\ShareService;
 use Yii;
@@ -20,6 +21,10 @@ class ShareLink extends Widget
     public function run()
     {
         if ($this->record instanceof Share) {
+            return '';
+        }
+
+        if ($this->record->content->visibility !== Content::VISIBILITY_PUBLIC) {
             return '';
         }
 
