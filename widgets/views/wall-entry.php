@@ -8,5 +8,6 @@ use humhub\modules\sharebetween\models\Share;
 <?php if ($share->getContentRecord()->content->canView()) : ?>
     <?= StreamEntryWidget::renderStreamEntry($share->getContentRecord()) ?>
 <?php else : ?>
-    <?= Yii::t('SharebetweenModule.base', 'You don\'t have access to this content.') ?>
+    <p><?= Yii::t('SharebetweenModule.base', 'Content not available') ?></p>
+    <?= Yii::t('SharebetweenModule.base', 'This content has either been deleted or you no longer have permission to access it.') ?>
 <?php endif; ?>
