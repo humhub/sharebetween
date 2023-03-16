@@ -6,6 +6,19 @@ use humhub\modules\content\widgets\stream\WallStreamModuleEntryWidget;
 
 class WallEntry extends WallStreamModuleEntryWidget
 {
+    /**
+     * @inheritdoc
+     */
+    public $layoutBody = 'wallEntryBodyLayout';
+
+    /**
+     * @inheritdoc
+     */
+    public $layoutHeader = 'wallEntryHeader';
+
+    /**
+     * @inheritdoc
+     */
     public function renderContent()
     {
         return $this->render('wall-entry',
@@ -18,10 +31,26 @@ class WallEntry extends WallStreamModuleEntryWidget
     }
 
     /**
-     * @inheritDoc
+     * @inheritdoc
+     */
+    protected function renderHeadImage()
+    {
+        return '';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function renderFooter()
+    {
+        return '';
+    }
+
+    /**
+     * @inheritdoc
      */
     protected function getTitle()
     {
-        return "Shared";
+        return '';
     }
 }
