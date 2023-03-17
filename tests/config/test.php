@@ -1,12 +1,11 @@
 <?php
 
+use humhub\modules\news\tests\codeception\fixtures\ShareFixture;
+
 return [
-    #'humhub_root' => 'D:\codebase\humhub\v1.2-dev',
     'modules' => ['sharebetween'],
     'fixtures' => [
         'default',
+        'share' => ShareFixture::class,
     ]
 ];
-
-
-

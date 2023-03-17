@@ -1,6 +1,6 @@
 <?php
 
-namespace tests\codeception\unit\modules\breakingnews;
+namespace humhub\modules\sharebetween\codeceptionTest\unit;
 
 use humhub\modules\post\models\Post;
 use humhub\modules\sharebetween\services\ShareService;

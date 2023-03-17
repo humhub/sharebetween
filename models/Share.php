@@ -2,11 +2,11 @@
 
 namespace humhub\modules\sharebetween\models;
 
+use humhub\modules\content\components\ContentActiveRecord;
+use humhub\modules\content\models\Content;
 use humhub\modules\sharebetween\services\ShareService;
 use humhub\modules\sharebetween\widgets\WallEntry;
 use Yii;
-use humhub\modules\content\components\ContentActiveRecord;
-use humhub\modules\content\models\Content;
 use yii\web\IdentityInterface;
 
 /**
@@ -56,6 +56,14 @@ class Share extends ContentActiveRecord
     public function getIcon()
     {
         return 'fa-share-alt';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getContentName()
+    {
+        return Yii::t('SharebetweenModule.base', 'Shared content');
     }
 
 }
