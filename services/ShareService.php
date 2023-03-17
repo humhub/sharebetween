@@ -9,7 +9,6 @@ use humhub\modules\content\models\Content;
 use humhub\modules\content\models\ContentContainer;
 use humhub\modules\post\permissions\CreatePost;
 use humhub\modules\sharebetween\models\Share;
-use humhub\modules\space\models\Space;
 use yii\web\IdentityInterface;
 
 final class ShareService
@@ -66,6 +65,10 @@ final class ShareService
     {
         if ($this->record->content->visibility !== Content::VISIBILITY_PUBLIC) {
             return false;
+        }
+
+        if ($this->user->isSystemAdmin()) {
+            return true;
         }
 
         if (!$container->getPermissionManager($this->user)->can(CreatePost::class)) {
