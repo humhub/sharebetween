@@ -2,7 +2,6 @@
 
 namespace humhub\modules\sharebetween\models;
 
-use humhub\modules\content\components\ContentContainerActiveRecord;
 use yii\base\Model;
 
 class ShareForm extends Model

@@ -2,12 +2,12 @@
 
 namespace humhub\modules\sharebetween\controllers;
 
+use humhub\modules\content\models\Content;
+use humhub\modules\sharebetween\models\ShareForm;
 use humhub\modules\sharebetween\services\ShareService;
 use humhub\modules\space\models\Space;
 use humhub\widgets\ModalClose;
 use Yii;
-use humhub\modules\content\models\Content;
-use humhub\modules\sharebetween\models\ShareForm;
 
 class ShareController extends \humhub\components\Controller
 {
@@ -41,6 +41,20 @@ class ShareController extends \humhub\components\Controller
         }
 
         return $this->renderAjax('index', ['content' => $content, 'model' => $model]);
+    }
+
+    public function actionSearchSpaces()
+    {
+        $content = Content::findOne(['id' => (int) Yii::$app->request->get('id')]);
+        if (!$content || !$content->canView()) {
+            return $this->forbidden();
+        }
+
+        $shareService = new ShareService($content->getModel(), Yii::$app->user->getIdentity());
+
+        $spaces = $shareService->searchSpaces(Yii::$app->request->get('keyword', ''));
+
+        return $this->asJson($spaces);
     }
 
 }
