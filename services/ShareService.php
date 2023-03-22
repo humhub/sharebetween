@@ -9,6 +9,9 @@ use humhub\modules\content\models\Content;
 use humhub\modules\content\models\ContentContainer;
 use humhub\modules\post\permissions\CreatePost;
 use humhub\modules\sharebetween\models\Share;
+use humhub\modules\space\models\Space;
+use humhub\modules\space\widgets\Chooser;
+use yii\db\Expression;
 use yii\web\IdentityInterface;
 
 final class ShareService
@@ -111,4 +114,37 @@ final class ShareService
         return $this->getShareQuery()->andWhere(['content.contentcontainer_id' => $container->contentcontainer_id]);
     }
 
+    public function searchSpaces(string $keyword): array
+    {
+        $spaces = Space::find()
+            ->visible()
+            ->filterBlockedSpaces()
+            ->search($keyword);
+
+        if (!$this->user->isSystemAdmin()) {
+            // Check the User can create a Post in the searched Spaces
+            $spaces->leftJoin('space_membership', 'space_membership.space_id = space.id')
+                ->leftJoin('contentcontainer_permission',
+                    'contentcontainer_permission.contentcontainer_id = space.contentcontainer_id
+                    AND contentcontainer_permission.group_id = space_membership.group_id')
+                ->andWhere(['space_membership.user_id' => $this->user->id])
+                ->andWhere(['OR',
+                    // Allowed by default
+                    ['AND', ['IN', 'space_membership.group_id', (new CreatePost())->defaultAllowedGroups],
+                            ['IS', 'contentcontainer_permission.permission_id', new Expression('NULL')]
+                    ],
+                    // Set to allow
+                    ['AND', ['contentcontainer_permission.permission_id' => CreatePost::class],
+                            ['contentcontainer_permission.state' => CreatePost::STATE_ALLOW]
+                    ]
+                ]);
+        }
+
+        $result = [];
+        foreach ($spaces->all() as $space) {
+            $result[] = Chooser::getSpaceResult($space);
+        }
+
+        return $result;
+    }
 }
