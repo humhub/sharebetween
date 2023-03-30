@@ -9,7 +9,7 @@ return [
     'class' => 'humhub\modules\sharebetween\Module',
     'namespace' => 'humhub\modules\sharebetween',
     'events' => [
-        [Content::class, Content::EVENT_SOFT_DELETE, ['humhub\modules\sharebetween\Events', 'onContentSoftDelete']],
+        [Content::class, Content::EVENT_AFTER_SOFT_DELETE, ['humhub\modules\sharebetween\Events', 'onContentAfterSoftDelete']],
         [ContentActiveRecord::class, ContentActiveRecord::EVENT_BEFORE_DELETE, ['humhub\modules\sharebetween\Events', 'onContentDelete']],
         [WallEntryLinks::class, WallEntryLinks::EVENT_INIT, ['humhub\modules\sharebetween\Events', 'onWallEntryLinksInit']],
     ],
