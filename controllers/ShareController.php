@@ -6,6 +6,7 @@ use humhub\modules\content\models\Content;
 use humhub\modules\sharebetween\models\ShareForm;
 use humhub\modules\sharebetween\services\ShareService;
 use humhub\modules\space\models\Space;
+use humhub\modules\user\models\User;
 use humhub\widgets\ModalClose;
 use Yii;
 
@@ -13,19 +14,26 @@ class ShareController extends \humhub\components\Controller
 {
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->forbidden();
+        }
+
         $content = Content::findOne(['id' => (int)Yii::$app->request->get('id')]);
         if (!$content || !$content->canView()) {
             return $this->forbidden();
         }
 
-        $shareService = new ShareService($content->getModel(), Yii::$app->user->getIdentity());
+        /* @var User $user */
+        $user = Yii::$app->user->getIdentity();
+
+        $shareService = new ShareService($content->getModel(), $user);
         $model = new ShareForm();
         foreach ($shareService->list() as $containerActiveRecord) {
             if ($containerActiveRecord instanceof Space) {
                 $model->spaces[] = $containerActiveRecord->guid;
             }
         }
-        if ($shareService->exist(Yii::$app->user->getIdentity())) {
+        if ($shareService->exist($user)) {
             $model->onProfile = true;
         }
 
@@ -40,7 +48,11 @@ class ShareController extends \humhub\components\Controller
             return ModalClose::widget(['script' => 'humhub.modules.action.Component.instance(' . $entrySelector . ').reload()']);
         }
 
-        return $this->renderAjax('index', ['content' => $content, 'model' => $model]);
+        return $this->renderAjax('index', [
+            'content' => $content,
+            'model' => $model,
+            'allowShareOnProfile' => $content->contentcontainer_id !== $user->contentcontainer_id
+        ]);
     }
 
     public function actionSearchSpaces()

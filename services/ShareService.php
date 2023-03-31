@@ -70,7 +70,7 @@ final class ShareService
             return false;
         }
 
-        if ($this->record->content->container->id === $container->id) {
+        if ($this->record->content->contentcontainer_id === $container->contentcontainer_id) {
             return false;
         }
 
