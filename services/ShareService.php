@@ -70,6 +70,10 @@ final class ShareService
             return false;
         }
 
+        if ($this->record->content->contentcontainer_id === $container->contentcontainer_id) {
+            return false;
+        }
+
         if ($this->user->isSystemAdmin()) {
             return true;
         }
@@ -117,6 +121,7 @@ final class ShareService
     public function searchSpaces(string $keyword): array
     {
         $spaces = Space::find()
+            ->where(['!=', 'space.id', $this->record->content->container->id])
             ->visible()
             ->filterBlockedSpaces()
             ->search($keyword);

@@ -10,6 +10,7 @@ use yii\helpers\Url;
 
 /* @var $model ShareForm */
 /* @var $content Content */
+/* @var $allowShareOnProfile bool */
 ?>
 <?php ModalDialog::begin(['header' => Yii::t('SpaceModule.base', '<strong>Share</strong> content')]); ?>
 <?php $form = ActiveForm::begin([]); ?>
@@ -17,7 +18,9 @@ use yii\helpers\Url;
         <?= $form->field($model, 'spaces')->widget(SpacePickerField::class, [
             'url' => Url::to(['/sharebetween/share/search-spaces', 'id' => $content->id])
         ])->label(false) ?>
-        <?= $form->field($model, 'onProfile')->checkbox() ?>
+        <?php if ($allowShareOnProfile) : ?>
+            <?= $form->field($model, 'onProfile')->checkbox() ?>
+        <?php endif; ?>
     </div>
     <div class="modal-footer">
         <?= ModalButton::submitModal() ?>
