@@ -11,7 +11,6 @@ namespace humhub\modules\sharebetween;
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\content\events\ContentEvent;
 use humhub\modules\sharebetween\models\Share;
-use Yii;
 use yii\base\BaseObject;
 
 class Events extends BaseObject
@@ -32,7 +31,7 @@ class Events extends BaseObject
         }
     }
 
-    public static function onContentSoftDelete(ContentEvent $event)
+    public static function onContentAfterSoftDelete(ContentEvent $event)
     {
         if ($event->content->object_model === Share::class) {
             return;
