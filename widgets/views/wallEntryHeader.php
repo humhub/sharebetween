@@ -8,6 +8,7 @@
 use humhub\libs\Html;
 use humhub\modules\content\widgets\stream\WallStreamEntryOptions;
 use humhub\modules\sharebetween\models\Share;
+use humhub\modules\ui\icon\widgets\Icon;
 use humhub\widgets\Link;
 use humhub\widgets\TimeAgo;
 
@@ -15,17 +16,17 @@ use humhub\widgets\TimeAgo;
 /* @var $permaLink string */
 /* @var $renderOptions WallStreamEntryOptions */
 
-$container = $model->getContentRecord()->content->container;
+$sourceContainer = $model->getContentRecord()->content->container;
+$currentContainer = $model->content->container;
 ?>
 <div class="wall-entry-header-info media-body">
-    <?php if ($renderOptions->isShowAuthorInformationInSubHeadLine($model)) : ?>
-        <?= Yii::t('SharebetweenModule.base', '{userName} shared a {contentName}', [
-            'userName' => Html::containerLink($model->content->createdBy, ['class' => 'wall-entry-container-link']),
-            'contentName' => $model->getContentRecord()->getContentName()
-        ]) ?>
-    <?php endif; ?>
-    @
-    <?= Link::to($container->getDisplayName(), $container->createUrl()) ?>
+    <?= Icon::get('share') ?>
+    <?= Link::to($sourceContainer->getDisplayName(), $sourceContainer->createUrl()) ?>
+    <?= Icon::get('caret-right', ['htmlOptions' => ['style' => 'margin-left:5px;font-size:80%']]) ?>
+    <?= Yii::t('SharebetweenModule.base', '{spaceName} by {userName}', [
+        'spaceName' => Link::to($currentContainer->getDisplayName(), $currentContainer->createUrl()),
+        'userName' => '<strong>' . Html::containerLink($model->content->createdBy, ['class' => 'wall-entry-container-link']) . '</strong>'
+    ]) ?>
     &middot;
     <?= Link::to(TimeAgo::widget(['timestamp' => $model->content->created_at]), $permaLink) ?>
 </div>

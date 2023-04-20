@@ -1,15 +1,22 @@
 .panel.sharebetween-wall-entry {
-  background: var(--background-color-highlight);
-  .panel-body {
-    padding: 5px;
-    .wall-entry-header-info {
+  > .panel-body {
+    padding: 10px;
+    > .wall-entry-header-info {
       padding-bottom: 5px;
+      border-bottom: 2px solid #eee;
       a {
         color: #555;
       }
     }
-    .panel {
-      margin: 0;
+    > .wall-entry {
+      margin-top: 10px;
+      > .panel {
+        margin: 0;
+        box-shadow: none;
+        > .panel-body {
+          padding: 0;
+        }
+      }
     }
   }
 }
