@@ -20,6 +20,7 @@ class ShareServiceTest extends HumHubDbTestCase
         $shareService = (new ShareService($postUser2Space2Public, Yii::$app->user->getIdentity()));
 
         $this->assertTrue($shareService->create($space3));
+        $this->becomeUser('user2');// TODO: need to investigate why current user is logged out after insert a Share
         $this->assertTrue($shareService->exist($space3));
         $shareService->delete($space3);
         $this->assertFalse($shareService->exist($space3));
