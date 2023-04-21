@@ -25,7 +25,7 @@ class SharebetweenCest
 
         $I->amGoingTo('check the post has been shared on the Space 2');
         $I->amOnSpace2();
-        $I->waitForText('Admin Tester shared a post @ Space 1', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Space 1 Space 2 by Admin Tester', null, $this->getWallEntrySelector(1));
     }
 
     public function testShareContentToProfile(AcceptanceTester $I)
@@ -47,7 +47,7 @@ class SharebetweenCest
 
         $I->amGoingTo('check the post has been shared on profile page');
         $I->amOnProfile();
-        $I->waitForText('Admin Tester shared a post @ Space 1', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Space 1 Admin Tester by Admin Tester', null, $this->getWallEntrySelector(1));
     }
 
     public function testShareContentBetweenSpacesAndProfile(AcceptanceTester $I)
@@ -71,15 +71,15 @@ class SharebetweenCest
 
         $I->amGoingTo('check the post has been shared on the Space 2');
         $I->amOnSpace2();
-        $I->waitForText('Admin Tester shared a post @ Space 1', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Space 1 Space 2 by Admin Tester', null, $this->getWallEntrySelector(1));
 
         $I->amGoingTo('check the post has been shared on the Space 3');
         $I->amOnSpace3();
-        $I->waitForText('Admin Tester shared a post @ Space 1', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Space 1 Space 3 by Admin Tester', null, $this->getWallEntrySelector(1));
 
         $I->amGoingTo('check the post has been shared on profile page');
         $I->amOnProfile();
-        $I->waitForText('Admin Tester shared a post @ Space 1', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Space 1 Admin Tester by Admin Tester', null, $this->getWallEntrySelector(1));
     }
 
     public function testSharePrivateContent(AcceptanceTester $I)

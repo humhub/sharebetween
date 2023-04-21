@@ -22,7 +22,7 @@ $currentContainer = $model->content->container;
 <div class="wall-entry-header-info media-body">
     <?= Icon::get('share') ?>
     <?= Link::to($sourceContainer->getDisplayName(), $sourceContainer->createUrl()) ?>
-    <?= Icon::get('caret-right', ['htmlOptions' => ['style' => 'margin-left:5px;font-size:80%']]) ?>
+    <?= Icon::get('caret-right', ['htmlOptions' => ['style' => 'margin-left:3px;font-size:80%']]) ?>
     <?= Yii::t('SharebetweenModule.base', '{spaceName} by {userName}', [
         'spaceName' => Link::to($currentContainer->getDisplayName(), $currentContainer->createUrl()),
         'userName' => '<strong>' . Html::containerLink($model->content->createdBy, ['class' => 'wall-entry-container-link']) . '</strong>'
