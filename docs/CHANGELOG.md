@@ -5,3 +5,4 @@ Changelog
 -----------------------
 - Fix #24: Add acceptance tests
 - Fix #27: Deny sharing a content to space where it was created in
+- Enh #28: Improve style of a shared content stream entry
