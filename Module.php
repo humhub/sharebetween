@@ -5,6 +5,8 @@ namespace humhub\modules\sharebetween;
 class Module extends \humhub\components\Module
 {
 
+    public $resourcesPath = 'resources';
+
     /**
      * @inheritdoc
      */
