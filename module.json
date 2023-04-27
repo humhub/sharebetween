@@ -6,5 +6,10 @@
     "version": "1.0.1",
     "humhub": {
         "minVersion": "1.14"
-    }
+    },
+    "screenshots": [
+        "resources/screen1.png",
+        "resources/screen2.png",
+        "resources/screen3.png"
+    ]
 }
