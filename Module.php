@@ -13,7 +13,7 @@ class Module extends \humhub\components\Module
     public function disable()
     {
         foreach (models\Share::find()->all() as $share) {
-            $share->delete();
+            $share->hardDelete();
         }
 
         parent::disable();
