@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.3 (Unreleased)
+-------------------
+- Fix #39: Deny to share a not published content
+
 1.0.2 (May 1, 2023)
 -------------------
 - Fix #35: Hard delete records on disable module
