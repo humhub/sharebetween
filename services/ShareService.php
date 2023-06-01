@@ -11,6 +11,9 @@ use humhub\modules\post\permissions\CreatePost;
 use humhub\modules\sharebetween\models\Share;
 use humhub\modules\space\models\Space;
 use humhub\modules\space\widgets\Chooser;
+use humhub\modules\user\models\User;
+use humhub\modules\user\Module as UserModule;
+use Yii;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
 
@@ -75,6 +78,10 @@ final class ShareService
         }
 
         if ($this->record->content->contentcontainer_id === $container->contentcontainer_id) {
+            return false;
+        }
+
+        if ($container instanceof User && Yii::$app->getModule('user')->profileDisableStream) {
             return false;
         }
 
