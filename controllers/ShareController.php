@@ -7,6 +7,7 @@ use humhub\modules\sharebetween\models\ShareForm;
 use humhub\modules\sharebetween\services\ShareService;
 use humhub\modules\space\models\Space;
 use humhub\modules\user\models\User;
+use humhub\modules\user\Module as UserModule;
 use humhub\widgets\ModalClose;
 use Yii;
 
@@ -51,7 +52,7 @@ class ShareController extends \humhub\components\Controller
         return $this->renderAjax('index', [
             'content' => $content,
             'model' => $model,
-            'allowShareOnProfile' => $content->contentcontainer_id !== $user->contentcontainer_id
+            'allowShareOnProfile' => $shareService->canCreate($user)
         ]);
     }
 
