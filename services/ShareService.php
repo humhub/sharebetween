@@ -73,7 +73,7 @@ final class ShareService
             return false;
         }
 
-        if ((int) $this->record->content->state !== Content::STATE_PUBLISHED) {
+        if (!$this->record->content->getStateService()->isPublished()) {
             return false;
         }
 
