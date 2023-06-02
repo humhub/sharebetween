@@ -28,7 +28,7 @@ class ShareLink extends Widget
             return '';
         }
 
-        if ((int) $this->record->content->state !== Content::STATE_PUBLISHED) {
+        if (!$this->record->content->getStateService()->isPublished()) {
             return '';
         }
 
