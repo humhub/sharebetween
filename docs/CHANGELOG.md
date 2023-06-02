@@ -5,6 +5,7 @@ Changelog
 -------------------
 - Fix #39: Deny to share a not published content
 - Fix #45: Disable possibility to share on the profile stream when "profileDisableStream" is true
+- Fix #37: Display a share button after create a content
 
 1.0.2 (May 1, 2023)
 -------------------

@@ -24,7 +24,7 @@ class ShareLink extends Widget
             return '';
         }
 
-        if ($this->record->content->visibility !== Content::VISIBILITY_PUBLIC) {
+        if ((int) $this->record->content->visibility !== Content::VISIBILITY_PUBLIC) {
             return '';
         }
 
