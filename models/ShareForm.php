@@ -2,6 +2,7 @@
 
 namespace humhub\modules\sharebetween\models;
 
+use Yii;
 use yii\base\Model;
 
 class ShareForm extends Model
@@ -20,16 +21,16 @@ class ShareForm extends Model
     public function attributeLabels()
     {
         return [
-            'spaces' => 'Spaces',
-            'onProfile' => 'Share this content on your profile stream'
+            'spaces' => Yii::t('SharebetweenModule.base', 'Spaces'),
+            'onProfile' => Yii::t('SharebetweenModule.base', 'Share this content on your profile stream'),
         ];
     }
 
     public function attributeHints()
     {
         return [
-            'spaces' => 'Select Spaces here on which the content is to be additionally displayed.',
-            'onProfile' => 'Content you create is automatically displayed on your profile.',
+            'spaces' => Yii::t('SharebetweenModule.base', 'Select Spaces here on which the content is to be additionally displayed.'),
+            'onProfile' => Yii::t('SharebetweenModule.base', 'Content you create is automatically displayed on your profile.'),
         ];
     }
 

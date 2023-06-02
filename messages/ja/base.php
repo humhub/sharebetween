@@ -1,8 +1,14 @@
 <?php
-return array (
-  'Content not available' => 'コンテンツは利用できません',
-  'Share' => '共有',
-  'Shared content' => '共有コンテンツ',
-  'This content has either been deleted or you no longer have permission to access it.' => 'このコンテンツは削除されているか、アクセスする権限がありません。',
-  '{spaceName} by {userName}' => '{spaceName}、作成者：{userName}',
-);
+
+return [
+    '<strong>Share</strong> content' => '',
+    'Content not available' => '',
+    'Content you create is automatically displayed on your profile.' => '',
+    'Select Spaces here on which the content is to be additionally displayed.' => '',
+    'Share' => '',
+    'Share this content on your profile stream' => '',
+    'Shared content' => '',
+    'Spaces' => '',
+    'This content has either been deleted or you no longer have permission to access it.' => '',
+    '{spaceName} by {userName}' => '',
+];
