@@ -12,7 +12,7 @@ use yii\helpers\Url;
 /* @var $content Content */
 /* @var $allowShareOnProfile bool */
 ?>
-<?php ModalDialog::begin(['header' => Yii::t('SpaceModule.base', '<strong>Share</strong> content')]); ?>
+<?php ModalDialog::begin(['header' => Yii::t('SharebetweenModule.base', '<strong>Share</strong> content')]); ?>
 <?php $form = ActiveForm::begin([]); ?>
     <div class="modal-body">
         <?= $form->field($model, 'spaces')->widget(SpacePickerField::class, [

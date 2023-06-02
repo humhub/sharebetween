@@ -1,8 +1,14 @@
 <?php
-return array (
-  'Content not available' => 'Inhoud niet beschikbaar',
-  'Share' => 'Deel',
-  'Shared content' => 'Gedeelde inhoud',
-  'This content has either been deleted or you no longer have permission to access it.' => 'Deze inhoud is verwijderd of u heeft geen toegangsrechten meer.',
-  '{spaceName} by {userName}' => '{spaceName} door {userName}',
-);
+
+return [
+    '<strong>Share</strong> content' => '',
+    'Content not available' => '',
+    'Content you create is automatically displayed on your profile.' => '',
+    'Select Spaces here on which the content is to be additionally displayed.' => '',
+    'Share' => '',
+    'Share this content on your profile stream' => '',
+    'Shared content' => '',
+    'Spaces' => '',
+    'This content has either been deleted or you no longer have permission to access it.' => '',
+    '{spaceName} by {userName}' => '',
+];

@@ -1,11 +1,12 @@
 Changelog
 =========
 
-1.0.3 (Unreleased)
--------------------
+1.0.3 (June 2, 2023)
+--------------------
 - Fix #39: Deny to share a not published content
 - Fix #45: Disable possibility to share on the profile stream when "profileDisableStream" is true
 - Fix #37: Display a share button after create a content
+- Fix #50: Fix missing translations
 
 1.0.2 (May 1, 2023)
 -------------------
