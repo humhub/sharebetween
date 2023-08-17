@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.4 (Unreleased)
+--------------------
+- Fix #51: Initialize module content class
+
 1.0.3 (June 2, 2023)
 --------------------
 - Fix #39: Deny to share a not published content
