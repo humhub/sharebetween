@@ -4,6 +4,7 @@ Changelog
 1.0.4 (Unreleased)
 --------------------
 - Fix #51: Initialize module content class
+- Enh #52: Tests for `next` version
 
 1.0.3 (June 2, 2023)
 --------------------
