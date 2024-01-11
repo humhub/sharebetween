@@ -2,17 +2,18 @@
 
 namespace humhub\modules\sharebetween\services;
 
+use humhub\libs\BasePermission;
 use humhub\modules\content\components\ActiveQueryContent;
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\content\components\ContentContainerActiveRecord;
 use humhub\modules\content\models\Content;
 use humhub\modules\content\models\ContentContainer;
+use humhub\modules\content\models\ContentContainerDefaultPermission;
 use humhub\modules\post\permissions\CreatePost;
 use humhub\modules\sharebetween\models\Share;
 use humhub\modules\space\models\Space;
 use humhub\modules\space\widgets\Chooser;
 use humhub\modules\user\models\User;
-use humhub\modules\user\Module as UserModule;
 use Yii;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
@@ -133,8 +134,8 @@ final class ShareService
     {
         $spaces = Space::find()
             ->where(['!=', 'space.id', $this->record->content->container->id])
-            ->visible()
-            ->filterBlockedSpaces()
+            ->visible($this->user)
+            ->filterBlockedSpaces($this->user)
             ->search($keyword);
 
         if (!$this->user->isSystemAdmin()) {
@@ -146,7 +147,7 @@ final class ShareService
                 ->andWhere(['space_membership.user_id' => $this->user->id])
                 ->andWhere(['OR',
                     // Allowed by default
-                    ['AND', ['IN', 'space_membership.group_id', (new CreatePost())->defaultAllowedGroups],
+                    ['AND', ['IN', 'space_membership.group_id', $this->getDefaultAllowedGroups()],
                             ['IS', 'contentcontainer_permission.permission_id', new Expression('NULL')]
                     ],
                     // Set to allow
@@ -162,5 +163,33 @@ final class ShareService
         }
 
         return $result;
+    }
+
+    public function getDefaultAllowedGroups(): array
+    {
+        $defaultAllowedGroups = (new CreatePost())->defaultAllowedGroups;
+
+        /* @var ContentContainerDefaultPermission[] $defaultPermissions */
+        $defaultPermissions = ContentContainerDefaultPermission::find()
+            ->where(['contentcontainer_class' => Space::class])
+            ->andWhere(['permission_id' => CreatePost::class])
+            ->all();
+
+        foreach ($defaultPermissions as $defaultPermission) {
+            switch ($defaultPermission->state) {
+                case BasePermission::STATE_ALLOW:
+                    if (!in_array($defaultPermission->group_id, $defaultAllowedGroups)) {
+                        $defaultAllowedGroups[] = $defaultPermission->group_id;
+                    }
+                    break;
+                case BasePermission::STATE_DENY:
+                    if (($i = array_search($defaultPermission->group_id, $defaultAllowedGroups)) !== false) {
+                        unset($defaultAllowedGroups[$i]);
+                    }
+                    break;
+            }
+        }
+
+        return $defaultAllowedGroups;
     }
 }
