@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.5 (Unreleased)
+1.0.5 (February 8, 2024)
 ------------------------
 - Fix #55: Fix space searching with updated default permission
 
