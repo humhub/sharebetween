@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.5 (Unreleased)
+------------------------
+- Fix #55: Fix space searching with updated default permission
+
 1.0.4 (January 12, 2024)
 ------------------------
 - Fix #51: Initialize module content class
