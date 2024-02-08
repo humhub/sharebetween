@@ -143,7 +143,8 @@ final class ShareService
             $spaces->leftJoin('space_membership', 'space_membership.space_id = space.id')
                 ->leftJoin('contentcontainer_permission',
                     'contentcontainer_permission.contentcontainer_id = space.contentcontainer_id
-                    AND contentcontainer_permission.group_id = space_membership.group_id')
+                    AND contentcontainer_permission.group_id = space_membership.group_id
+                    AND contentcontainer_permission.permission_id = :permission_id')
                 ->andWhere(['space_membership.user_id' => $this->user->id])
                 ->andWhere(['OR',
                     // Allowed by default
@@ -151,10 +152,9 @@ final class ShareService
                             ['IS', 'contentcontainer_permission.permission_id', new Expression('NULL')]
                     ],
                     // Set to allow
-                    ['AND', ['contentcontainer_permission.permission_id' => CreatePost::class],
-                            ['contentcontainer_permission.state' => CreatePost::STATE_ALLOW]
-                    ]
-                ]);
+                    ['contentcontainer_permission.state' => CreatePost::STATE_ALLOW]
+                ])
+                ->addParams(['permission_id' => CreatePost::class]);
         }
 
         $result = [];
