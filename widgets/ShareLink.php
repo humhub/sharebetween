@@ -24,7 +24,7 @@ class ShareLink extends Widget
             return '';
         }
 
-        if ((int) $this->record->content->visibility !== Content::VISIBILITY_PUBLIC) {
+        if ((int)$this->record->content->visibility !== Content::VISIBILITY_PUBLIC) {
             return '';
         }
 
@@ -41,7 +41,8 @@ class ShareLink extends Widget
                 Yii::t('SharebetweenModule.base', 'Share') . $this->getCounter(),
                 ['/sharebetween/share', 'id' => $this->record->content->id],
                 ['data-target' => '#globalModal']
-            )
+            ),
+            ['class' => 'share-between-container']
         );
     }
 
