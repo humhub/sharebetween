@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.0.6 (Unreleased)
-------------------------
+1.0.6 (May 17, 2024)
+--------------------
 - Fix #60: Fix sharing a global content from the dashboard
 
 1.0.5 (February 8, 2024)
