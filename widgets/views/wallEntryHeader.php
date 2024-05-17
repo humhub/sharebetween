@@ -6,6 +6,7 @@
  */
 
 use humhub\libs\Html;
+use humhub\modules\content\components\ContentContainerActiveRecord;
 use humhub\modules\content\widgets\stream\WallStreamEntryOptions;
 use humhub\modules\sharebetween\models\Share;
 use humhub\modules\ui\icon\widgets\Icon;
@@ -21,11 +22,13 @@ $currentContainer = $model->content->container;
 ?>
 <div class="wall-entry-header-info media-body">
     <?= Icon::get('share') ?>
-    <?= Link::to($sourceContainer->getDisplayName(), $sourceContainer->createUrl()) ?>
+    <?= $sourceContainer instanceof ContentContainerActiveRecord
+        ? Link::to($sourceContainer->getDisplayName(), $sourceContainer->createUrl())
+        : Link::to(Yii::t('DashboardModule.base', 'Dashboard'), ['/dashboard/dashboard']) ?>
     <?= Icon::get('caret-right', ['htmlOptions' => ['style' => 'margin-left:3px;font-size:80%']]) ?>
     <?= Yii::t('SharebetweenModule.base', '{spaceName} by {userName}', [
         'spaceName' => Link::to($currentContainer->getDisplayName(), $currentContainer->createUrl()),
-        'userName' => '<strong>' . Html::containerLink($model->content->createdBy, ['class' => 'wall-entry-container-link']) . '</strong>'
+        'userName' => '<strong>' . Html::containerLink($model->content->createdBy, ['class' => 'wall-entry-container-link']) . '</strong>',
     ]) ?>
     &middot;
     <?= Link::to(TimeAgo::widget(['timestamp' => $model->content->created_at]), $permaLink) ?>

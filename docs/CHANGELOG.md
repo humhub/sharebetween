@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.6 (Unreleased)
+------------------------
+- Fix #60: Fix sharing a global content from the dashboard
+
 1.0.5 (February 8, 2024)
 ------------------------
 - Fix #55: Fix space searching with updated default permission
