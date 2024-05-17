@@ -133,26 +133,32 @@ final class ShareService
     public function searchSpaces(string $keyword): array
     {
         $spaces = Space::find()
-            ->where(['!=', 'space.id', $this->record->content->container->id])
             ->visible($this->user)
             ->filterBlockedSpaces($this->user)
             ->search($keyword);
 
+        if ($this->record->content->container instanceof Space) {
+            $spaces->andWhere(['!=', 'space.id', $this->record->content->container->id]);
+        }
+
         if (!$this->user->isSystemAdmin()) {
             // Check the User can create a Post in the searched Spaces
             $spaces->leftJoin('space_membership', 'space_membership.space_id = space.id')
-                ->leftJoin('contentcontainer_permission',
+                ->leftJoin(
+                    'contentcontainer_permission',
                     'contentcontainer_permission.contentcontainer_id = space.contentcontainer_id
                     AND contentcontainer_permission.group_id = space_membership.group_id
-                    AND contentcontainer_permission.permission_id = :permission_id')
+                    AND contentcontainer_permission.permission_id = :permission_id',
+                )
                 ->andWhere(['space_membership.user_id' => $this->user->id])
                 ->andWhere(['OR',
                     // Allowed by default
-                    ['AND', ['IN', 'space_membership.group_id', $this->getDefaultAllowedGroups()],
-                            ['IS', 'contentcontainer_permission.permission_id', new Expression('NULL')]
+                    ['AND',
+                        ['IN', 'space_membership.group_id', $this->getDefaultAllowedGroups()],
+                        ['IS', 'contentcontainer_permission.permission_id', new Expression('NULL')],
                     ],
                     // Set to allow
-                    ['contentcontainer_permission.state' => CreatePost::STATE_ALLOW]
+                    ['contentcontainer_permission.state' => CreatePost::STATE_ALLOW],
                 ])
                 ->addParams(['permission_id' => CreatePost::class]);
         }

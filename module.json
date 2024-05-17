@@ -3,7 +3,7 @@
     "name": "Share content",
     "description": "Share content between Spaces in the simplest way possible.",
     "keywords": ["share", "between", "content"],
-    "version": "1.0.5",
+    "version": "1.0.6",
     "humhub": {
         "minVersion": "1.14"
     },
