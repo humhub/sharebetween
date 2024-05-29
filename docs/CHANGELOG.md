@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1.0 (Unreleased)
+--------------------
+- Fix #61: Update module resources path
+
 1.0.6 (May 17, 2024)
 --------------------
 - Fix #60: Fix sharing a global content from the dashboard
