@@ -12,7 +12,6 @@ use yii\base\Widget;
 
 class ShareLink extends Widget
 {
-
     /**
      * @var ContentActiveRecord
      */
@@ -36,13 +35,14 @@ class ShareLink extends Widget
             return '';
         }
 
-        return Html::tag('span',
+        return Html::tag(
+            'span',
             Html::a(
                 Yii::t('SharebetweenModule.base', 'Share') . $this->getCounter(),
                 ['/sharebetween/share', 'id' => $this->record->content->id],
-                ['data-target' => '#globalModal']
+                ['data-target' => '#globalModal'],
             ),
-            ['class' => 'share-between-container']
+            ['class' => 'share-between-container'],
         );
     }
 

@@ -15,7 +15,6 @@ use yii\base\BaseObject;
 
 class Events extends BaseObject
 {
-
     public static function onContentDelete($event)
     {
         /** @var ContentActiveRecord $record */

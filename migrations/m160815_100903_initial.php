@@ -4,14 +4,13 @@ use yii\db\Migration;
 
 class m160815_100903_initial extends Migration
 {
-
     public function up()
     {
         $this->createTable('sharebetween_share', [
             'id' => 'pk',
             'content_id' => 'int(11) NOT NULL',
         ], '');
-        
+
         $this->addForeignKey('fk_content', 'sharebetween_share', 'content_id', 'content', 'id');
     }
 
