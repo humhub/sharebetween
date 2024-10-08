@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.7 (Unreleased)
+--------------------
+- Enh #65: Use PHP CS Fixer
+
 1.0.6 (May 17, 2024)
 --------------------
 - Fix #60: Fix sharing a global content from the dashboard

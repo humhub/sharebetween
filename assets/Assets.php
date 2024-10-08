@@ -25,13 +25,13 @@ class Assets extends AssetBundle
      * @inheritdoc
      */
     public $css = [
-        'css/sharebetween.min.css'
+        'css/sharebetween.min.css',
     ];
 
     /**
      * @inheritdoc
      */
     public $publishOptions = [
-        'forceCopy' => false
+        'forceCopy' => false,
     ];
 }

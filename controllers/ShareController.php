@@ -52,7 +52,7 @@ class ShareController extends \humhub\components\Controller
         return $this->renderAjax('index', [
             'content' => $content,
             'model' => $model,
-            'allowShareOnProfile' => $shareService->canCreate($user)
+            'allowShareOnProfile' => $shareService->canCreate($user),
         ]);
     }
 

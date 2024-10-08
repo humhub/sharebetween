@@ -27,9 +27,9 @@ class Share extends ContentActiveRecord
 
     public function rules()
     {
-        return array(
+        return [
             [['content_id'], 'required'],
-        );
+        ];
     }
 
     public function getSharedContent()

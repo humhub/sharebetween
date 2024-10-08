@@ -9,7 +9,6 @@ use humhub\modules\user\models\User;
 
 class Module extends ContentContainerModule
 {
-
     public $resourcesPath = 'resources';
 
     /**
@@ -31,7 +30,7 @@ class Module extends ContentContainerModule
     {
         return [
             Space::class,
-            User::class
+            User::class,
         ];
     }
 
