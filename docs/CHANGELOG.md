@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.8 (Unreleased)
+-------------------------
+- Enh #67: Update text in the activity sidebar
+
 1.0.7 (November 14, 2024)
 -------------------------
 - Enh #65: Use PHP CS Fixer

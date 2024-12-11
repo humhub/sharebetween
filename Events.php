@@ -8,8 +8,10 @@
 
 namespace humhub\modules\sharebetween;
 
+use humhub\modules\activity\models\Activity;
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\content\events\ContentEvent;
+use humhub\modules\sharebetween\activities\SharedContentCreated;
 use humhub\modules\sharebetween\models\Share;
 use yii\base\BaseObject;
 
@@ -53,4 +55,14 @@ class Events extends BaseObject
         $stackWidget->addWidget(widgets\ShareLink::class, ['record' => $record]);
     }
 
+    public static function onActivityAfterFind($event)
+    {
+        /* @var Activity $activity */
+        $activity = $event->sender;
+
+        if ($activity->object_model === Share::class) {
+            // Switch to render specific text for the shared content activity
+             $activity->class = SharedContentCreated::class;
+        }
+    }
 }

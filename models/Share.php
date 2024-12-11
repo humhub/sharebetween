@@ -66,4 +66,11 @@ class Share extends ContentActiveRecord
         return Yii::t('SharebetweenModule.base', 'Shared content');
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function getContentDescription()
+    {
+        return $this->sharedContent->getContentDescription();
+    }
 }
