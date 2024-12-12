@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.8 (Unreleased)
+-------------------------
+- Enh #67: Update text for activity and notification of shared contents
+
 1.0.7 (November 14, 2024)
 -------------------------
 - Enh #65: Use PHP CS Fixer
