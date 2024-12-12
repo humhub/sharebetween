@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.8 (Unreleased)
+1.0.8 (December 12, 2024)
 -------------------------
 - Enh #67: Update text for activity and notification of shared contents
 
