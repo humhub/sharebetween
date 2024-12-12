@@ -15,5 +15,5 @@ use yii\helpers\Html;
 
 echo Yii::t('SharebetweenModule.base', '{user} shared something interesting from Space {space}.', [
     '{user}' => '<strong>' . Html::encode($originator->displayName) . '</strong>',
-    '{space}' => '<strong>' . Html::encode($source->content->container->displayName) . '</strong>',
+    '{space}' => '<strong>' . Html::encode($source->sharedContent->container->displayName) . '</strong>',
 ]);
