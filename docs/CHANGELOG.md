@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.9 (Unreleased)
+-------------------------
+- Enh #69: Fix activity and notification wording from User and Dashboard
+
 1.0.8 (December 12, 2024)
 -------------------------
 - Enh #67: Update text for activity and notification of shared contents
