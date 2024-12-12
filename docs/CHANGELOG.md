@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.9 (Unreleased)
+1.0.9 (December 12, 2024)
 -------------------------
 - Enh #69: Fix activity and notification wording from User and Dashboard
 
