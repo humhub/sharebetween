@@ -3,9 +3,9 @@
 use humhub\modules\content\models\Content;
 use humhub\modules\sharebetween\models\ShareForm;
 use humhub\modules\space\widgets\SpacePickerField;
+use humhub\modules\ui\form\widgets\ActiveForm;
 use humhub\widgets\ModalButton;
 use humhub\widgets\ModalDialog;
-use humhub\modules\ui\form\widgets\ActiveForm;
 use yii\helpers\Url;
 
 /* @var $model ShareForm */
@@ -16,7 +16,8 @@ use yii\helpers\Url;
 <?php $form = ActiveForm::begin([]); ?>
     <div class="modal-body">
         <?= $form->field($model, 'spaces')->widget(SpacePickerField::class, [
-            'url' => Url::to(['/sharebetween/share/search-spaces', 'id' => $content->id])
+            'url' => Url::to(['/sharebetween/share/search-spaces', 'id' => $content->id]),
+            'minInput' => 0,
         ])->label(false) ?>
         <?php if ($allowShareOnProfile) : ?>
             <?= $form->field($model, 'onProfile')->checkbox() ?>
