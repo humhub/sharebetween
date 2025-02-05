@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.10 (unreleased)
+1.0.10 (February 5, 2025)
 -------------------------
 - Enh #71: Show the list of available spaces to share to without having to enter the 2 first letters
 
