@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.10 (unreleased)
+-------------------------
+- Enh #71: Show the list of available spaces to share to without having to enter the 2 first letters
+
 1.0.9 (December 12, 2024)
 -------------------------
 - Enh #69: Fix activity and notification wording from User and Dashboard
