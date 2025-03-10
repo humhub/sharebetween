@@ -3,7 +3,7 @@ Changelog
 
 1.0.11 (Unreleased)
 -------------------------
-- Enh: Use the new ContentCreationService to search spaces
+- Enh #74: Use the new ContentCreationService to search spaces
 
 1.0.10 (February 5, 2025)
 -------------------------
