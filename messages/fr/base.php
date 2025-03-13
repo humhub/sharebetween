@@ -1,5 +1,5 @@
 <?php
-return array (
+return [
   '<strong>Share</strong> content' => '<strong>Partager</strong> du contenu',
   'Content not available' => 'Contenu non disponible',
   'Content you create is automatically displayed on your profile.' => 'Le contenu que vous créez est automatiquement affiché sur votre profil.',
@@ -10,4 +10,7 @@ return array (
   'Spaces' => 'Espaces',
   'This content has either been deleted or you no longer have permission to access it.' => 'Ce contenu a été supprimé ou vous n\'êtes plus autorisé à y accéder.',
   '{spaceName} by {userName}' => '{spaceName} par {userName}',
-);
+  '{user} shared something interesting from Space {space}.' => '{user} a partagé quelque chose d’intéressant depuis l’espace {space}.',
+  '{user} shared something interesting from dashboard.' => '{user} a partagé quelque chose d’intéressant depuis la vue d’ensemble.',
+  '{user} shared something interesting from user {sourceUser}.' => '{user} a partagé quelque chose d’intéressant provenant du compte {sourceUser}.',
+];

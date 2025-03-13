@@ -11,4 +11,7 @@ return [
     'Spaces' => '',
     'This content has either been deleted or you no longer have permission to access it.' => '',
     '{spaceName} by {userName}' => '',
+    '{user} shared something interesting from Space {space}.' => '',
+    '{user} shared something interesting from dashboard.' => '',
+    '{user} shared something interesting from user {sourceUser}.' => '',
 ];
