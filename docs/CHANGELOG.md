@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.11 (Unreleased)
+-------------------------
+- Enh #74: Use the new ContentCreationService to search spaces
+
 1.0.10 (February 5, 2025)
 -------------------------
 - Enh #71: Show the list of available spaces to share to without having to enter the 2 first letters
