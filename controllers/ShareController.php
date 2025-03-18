@@ -3,9 +3,10 @@
 namespace humhub\modules\sharebetween\controllers;
 
 use humhub\modules\content\models\Content;
-use humhub\modules\content\services\ContentCreationService;
+use humhub\modules\post\permissions\CreatePost;
 use humhub\modules\sharebetween\models\ShareForm;
 use humhub\modules\sharebetween\services\ShareService;
+use humhub\modules\space\helpers\CreateContentPermissionHelper;
 use humhub\modules\space\models\Space;
 use humhub\modules\user\models\User;
 use humhub\widgets\ModalClose;
@@ -63,9 +64,11 @@ class ShareController extends \humhub\components\Controller
             return $this->forbidden();
         }
 
-        $shareService = new ContentCreationService($content->getModel());
-
-        $spaces = $shareService->searchSpaces(Yii::$app->request->get('keyword', ''));
+        $spaces = CreateContentPermissionHelper::findSpaces(
+            CreatePost::class,
+            Yii::$app->request->get('keyword', ''),
+            Yii::$app->user->identity,
+        );
 
         return $this->asJson($spaces);
     }
