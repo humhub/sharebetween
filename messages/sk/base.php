@@ -11,6 +11,8 @@ return [
     'Spaces' => 'Priestory',
     'This content has either been deleted or you no longer have permission to access it.' => 'Tento obsah bol buď odstránený, alebo už nemáte povolenie na prístup k nemu.',
     '{spaceName} by {userName}' => '{spaceName} od používateľa {userName}',
+    'Share Content' => '',
+    'Whenever content (e.g. a post) is shared by a user.' => '',
     '{user} shared something interesting from Space {space}.' => '',
     '{user} shared something interesting from dashboard.' => '',
     '{user} shared something interesting from user {sourceUser}.' => '',
