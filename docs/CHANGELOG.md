@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.0.11 (Unreleased)
--------------------------
+1.0.11 (May 28, 2025)
+---------------------
 - Fix #75: Fix activity description
 
 1.0.10 (February 5, 2025)
