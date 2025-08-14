@@ -5,7 +5,7 @@ module.exports = function (grunt) {
         cssmin: {
             target: {
                 files: {
-                    'resources/css/sharebetween.min.css': ['resources/css/humhub.wiki.css']
+                    'resources/css/sharebetween.min.css': ['resources/css/sharebetween.css']
                 }
             }
         },
