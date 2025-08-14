@@ -44,7 +44,8 @@ class ShareLink extends Widget
                 [
                     'data-action-click' => 'ui.modal.load',
                     'data-action-click-url' => Url::toRoute(['/sharebetween/share', 'id' => $this->record->content->id]),
-                ]),
+                ],
+            ),
             ['class' => 'share-between-container'],
         );
     }
