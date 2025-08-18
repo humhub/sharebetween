@@ -2,13 +2,14 @@
 
 namespace humhub\modules\sharebetween\widgets;
 
-use humhub\libs\Html;
+use humhub\helpers\Html;
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\content\models\Content;
 use humhub\modules\sharebetween\models\Share;
 use humhub\modules\sharebetween\services\ShareService;
 use Yii;
 use yii\base\Widget;
+use yii\helpers\Url;
 
 class ShareLink extends Widget
 {
@@ -39,8 +40,11 @@ class ShareLink extends Widget
             'span',
             Html::a(
                 Yii::t('SharebetweenModule.base', 'Share') . $this->getCounter(),
-                ['/sharebetween/share', 'id' => $this->record->content->id],
-                ['data-target' => '#globalModal'],
+                '#',
+                [
+                    'data-action-click' => 'ui.modal.load',
+                    'data-action-click-url' => Url::toRoute(['/sharebetween/share', 'id' => $this->record->content->id]),
+                ],
             ),
             ['class' => 'share-between-container'],
         );

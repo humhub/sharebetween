@@ -13,7 +13,7 @@ use humhub\modules\sharebetween\models\Share;
 use humhub\modules\space\models\Space;
 use humhub\modules\user\models\User;
 use Yii;
-use yii\bootstrap\Html;
+use humhub\helpers\Html;
 
 class SharedContentCreated extends ContentCreated
 {

@@ -3,9 +3,9 @@
     padding: 10px;
     > .wall-entry-header-info {
       padding-bottom: 5px;
-      border-bottom: 2px solid #eee;
+      border-bottom: 2px solid var(--bs-border-color);
       a {
-        color: #555;
+        color: var(--hh-text-color-main);
       }
     }
     > .wall-entry {

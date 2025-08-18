@@ -7,7 +7,7 @@
 
 use humhub\modules\content\components\ContentActiveRecord;
 use humhub\modules\sharebetween\assets\Assets;
-use humhub\modules\ui\view\components\View;
+use humhub\components\View;
 
 /* @var $this View */
 /* @var $model ContentActiveRecord */

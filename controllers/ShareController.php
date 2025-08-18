@@ -8,7 +8,7 @@ use humhub\modules\sharebetween\services\ShareService;
 use humhub\modules\space\models\Space;
 use humhub\modules\user\models\User;
 use humhub\modules\user\Module as UserModule;
-use humhub\widgets\ModalClose;
+use humhub\widgets\modal\ModalClose;
 use Yii;
 
 class ShareController extends \humhub\components\Controller
