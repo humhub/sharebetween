@@ -7,5 +7,5 @@ return [
     'fixtures' => [
         'default',
         'share' => ShareFixture::class,
-    ]
+    ],
 ];

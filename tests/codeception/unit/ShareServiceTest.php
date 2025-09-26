@@ -10,7 +10,6 @@ use Yii;
 
 class ShareServiceTest extends HumHubDbTestCase
 {
-
     public function testCreateRemoveShare()
     {
         $this->becomeUser('user2');

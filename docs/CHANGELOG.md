@@ -1,9 +1,33 @@
 Changelog
 =========
 
-1.1.0 (Unreleased)
+1.1.1 (Unreleased)
 --------------------
 - Fix #61: Update module resources path
+
+1.1.0 (August 18, 2025)
+-----------------------
+- Enh #78: Migration to Bootstrap 5 for HumHub 1.18
+
+1.0.11 (May 28, 2025)
+---------------------
+- Fix #75: Fix activity description
+
+1.0.10 (February 5, 2025)
+-------------------------
+- Enh #71: Show the list of available spaces to share to without having to enter the 2 first letters
+
+1.0.9 (December 12, 2024)
+-------------------------
+- Enh #69: Fix activity and notification wording from User and Dashboard
+
+1.0.8 (December 12, 2024)
+-------------------------
+- Enh #67: Update text for activity and notification of shared contents
+
+1.0.7 (November 14, 2024)
+-------------------------
+- Enh #65: Use PHP CS Fixer
 
 1.0.6 (May 17, 2024)
 --------------------

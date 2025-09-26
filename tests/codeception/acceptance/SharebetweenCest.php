@@ -6,7 +6,6 @@ use sharebetween\AcceptanceTester;
 
 class SharebetweenCest
 {
-
     public function testShareContentBetweenSpaces(AcceptanceTester $I)
     {
         $I->wantTo('share a content between spaces');

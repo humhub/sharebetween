@@ -7,11 +7,14 @@ use humhub\modules\content\models\Content;
 use humhub\modules\sharebetween\services\ShareService;
 use humhub\modules\sharebetween\widgets\WallEntry;
 use Yii;
+use yii\db\ActiveQuery;
 use yii\web\IdentityInterface;
 
 /**
+ * Class for shared content record between spaces or users
  *
- * @property $content_id int
+ * @property int $content_id
+ * @property-read Content $sharedContent
  */
 class Share extends ContentActiveRecord
 {
@@ -20,19 +23,25 @@ class Share extends ContentActiveRecord
      */
     public $wallEntryClass = WallEntry::class;
 
+    /**
+     * @inheritdoc
+     */
     public static function tableName()
     {
         return 'sharebetween_share';
     }
 
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
-        return array(
+        return [
             [['content_id'], 'required'],
-        );
+        ];
     }
 
-    public function getSharedContent()
+    public function getSharedContent(): ActiveQuery
     {
         return $this->hasOne(Content::class, ['id' => 'content_id']);
     }
@@ -42,8 +51,7 @@ class Share extends ContentActiveRecord
         return $this->sharedContent->getModel();
     }
 
-
-    public function getShareService(?IdentityInterface $user)
+    public function getShareService(?IdentityInterface $user): ShareService
     {
         if ($user === null) {
             /** @var IdentityInterface $user */
@@ -53,6 +61,9 @@ class Share extends ContentActiveRecord
         return new ShareService($this->getContentRecord(), $user);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getIcon()
     {
         return 'fa-share-alt';
@@ -66,4 +77,11 @@ class Share extends ContentActiveRecord
         return Yii::t('SharebetweenModule.base', 'Shared content');
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function getContentDescription()
+    {
+        return $this->sharedContent->getContentDescription();
+    }
 }

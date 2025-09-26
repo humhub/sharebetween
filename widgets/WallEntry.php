@@ -21,12 +21,13 @@ class WallEntry extends WallStreamModuleEntryWidget
      */
     public function renderContent()
     {
-        return $this->render('wall-entry',
+        return $this->render(
+            'wall-entry',
             [
                 'share' => $this->model,
                 'user' => $this->model->content->createdBy,
-                'contentContainer' => $this->model->content->container
-            ]
+                'contentContainer' => $this->model->content->container,
+            ],
         );
     }
 

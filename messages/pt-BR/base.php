@@ -1,13 +1,18 @@
 <?php
-return array (
-  '<strong>Share</strong> content' => '',
-  'Content not available' => '',
-  'Content you create is automatically displayed on your profile.' => '',
-  'Select Spaces here on which the content is to be additionally displayed.' => '',
-  'Share' => '',
-  'Share this content on your profile stream' => '',
-  'Shared content' => '',
+return [
+  '<strong>Share</strong> content' => '<strong>Compartilhar</strong> conteúdo',
+  'Content not available' => 'Conteúdo não disponível',
+  'Content you create is automatically displayed on your profile.' => 'O conteúdo que você cria é exibido automaticamente no seu perfil.',
+  'Select Spaces here on which the content is to be additionally displayed.' => 'Selecione aqui os espaços nos quais o conteúdo deve ser exibido adicionalmente.',
+  'Share' => '➤',
+  'Share Content' => 'Compartilhar conteúdo',
+  'Share this content on your profile stream' => 'Compartilhe este conteúdo no seu perfil',
+  'Shared content' => 'Conteúdo compartilhado',
   'Spaces' => 'Espaços',
-  'This content has either been deleted or you no longer have permission to access it.' => '',
-  '{spaceName} by {userName}' => '',
-);
+  'This content has either been deleted or you no longer have permission to access it.' => 'Este conteúdo foi excluído ou você não tem mais permissão para acessá-lo.',
+  'Whenever content (e.g. a post) is shared by a user.' => 'Sempre que um conteúdo (por exemplo, uma postagem) é compartilhada por um usuário.',
+  '{spaceName} by {userName}' => '{spaceName} por {userName}',
+  '{user} shared something interesting from Space {space}.' => '{user} compartilhou algo interessante do Espaço {space}.',
+  '{user} shared something interesting from dashboard.' => '{user} compartilhou algo interessante do feed.',
+  '{user} shared something interesting from user {sourceUser}.' => '{user} compartilhou algo interessante do usuário {sourceUser}.',
+];

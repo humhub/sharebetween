@@ -3,9 +3,9 @@
     "name": "Share content",
     "description": "Share content between Spaces in the simplest way possible.",
     "keywords": ["share", "between", "content"],
-    "version": "1.1.0",
+    "version": "1.1.1",
     "humhub": {
-        "minVersion": "1.17"
+        "minVersion": "1.18"
     },
     "screenshots": [
         "resources/screen1.png",

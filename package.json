@@ -1,0 +1,23 @@
+{
+  "name": "humhub-modules-sharebetween",
+  "description": "HumHub Share Content Module",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/humhub-contrib/sharebetween.git"
+  },
+  "bugs": {
+    "url": "https://github.com/humhub-contrib/sharebetween/issues"
+  },
+  "homepage": "https://github.com/humhub-contrib/sharebetween#readme",
+  "devDependencies": {
+    "grunt": "^1.5.3",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-sass": "^3.1.0",
+    "sass": "^1.83.0"
+  }
+}
