@@ -9,8 +9,6 @@ use humhub\modules\user\models\User;
 
 class Module extends ContentContainerModule
 {
-    public $resourcesPath = 'resources';
-
     /**
      * @inheritdoc
      */
