@@ -5,12 +5,12 @@
  * @license https://www.humhub.com/licences
  */
 
-use humhub\libs\Html;
+use humhub\helpers\Html;
 use humhub\modules\content\components\ContentContainerActiveRecord;
 use humhub\modules\content\widgets\stream\WallStreamEntryOptions;
 use humhub\modules\sharebetween\models\Share;
 use humhub\modules\ui\icon\widgets\Icon;
-use humhub\widgets\Link;
+use humhub\widgets\bootstrap\Link;
 use humhub\widgets\TimeAgo;
 
 /* @var $model Share */
@@ -20,7 +20,7 @@ use humhub\widgets\TimeAgo;
 $sourceContainer = $model->getContentRecord()->content->container;
 $currentContainer = $model->content->container;
 ?>
-<div class="wall-entry-header-info media-body">
+<div class="wall-entry-header-info flex-grow-1">
     <?= Icon::get('share') ?>
     <?= $sourceContainer instanceof ContentContainerActiveRecord
         ? Link::to($sourceContainer->getDisplayName(), $sourceContainer->createUrl())
