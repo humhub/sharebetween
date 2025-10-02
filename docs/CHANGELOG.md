@@ -4,6 +4,7 @@ Changelog
 1.1.1 (Unreleased)
 --------------------
 - Fix #61: Update module resources path
+- Fix #79: Improved Module Test GitHub Actions
 
 1.1.0 (August 18, 2025)
 -----------------------
