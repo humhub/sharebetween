@@ -13,18 +13,18 @@ class SharebetweenCest
         $I->amOnSpace1();
 
         $I->amGoingTo('share a public post');
-        $I->waitForText('Post Public', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Post Public', 10, $this->getWallEntrySelector(1));
         $I->see('Share', $this->getAddonsSelector(1));
         $I->click('Share', $this->getAddonsSelector(1));
 
-        $I->waitForText('Share content', null, '#globalModal');
+        $I->waitForText('Share content', 10, '#globalModal');
         $I->selectFromPicker('#globalModal #shareform-spaces', 'Space 2');
         $I->click('Save', '#globalModal');
-        $I->waitForText('Share (1)', null, $this->getAddonsSelector(1));
+        $I->waitForText('Share (1)', 10, $this->getAddonsSelector(1));
 
         $I->amGoingTo('check the post has been shared on the Space 2');
         $I->amOnSpace2();
-        $I->waitForText('Space 1 Space 2 by Admin Tester', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Space 1 Space 2 by Admin Tester', 10, $this->getWallEntrySelector(1));
     }
 
     public function testShareContentToProfile(AcceptanceTester $I)
@@ -34,19 +34,19 @@ class SharebetweenCest
         $I->amOnSpace1();
 
         $I->amGoingTo('share a post to profile');
-        $I->waitForText('Post Public', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Post Public', 10, $this->getWallEntrySelector(1));
         $I->see('Share', $this->getAddonsSelector(1));
         $I->click('Share', $this->getAddonsSelector(1));
 
-        $I->waitForText('Share content', null, '#globalModal');
+        $I->waitForText('Share content', 10, '#globalModal');
         $I->see('Share this content on your profile stream');
         $I->checkOption('#shareform-onprofile');
         $I->click('Save', '#globalModal');
-        $I->waitForText('Share (1)', null, $this->getAddonsSelector(1));
+        $I->waitForText('Share (1)', 10, $this->getAddonsSelector(1));
 
         $I->amGoingTo('check the post has been shared on profile page');
         $I->amOnProfile();
-        $I->waitForText('Space 1 Admin Tester by Admin Tester', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Space 1 Admin Tester by Admin Tester', 10, $this->getWallEntrySelector(1));
     }
 
     public function testShareContentBetweenSpacesAndProfile(AcceptanceTester $I)
@@ -56,29 +56,29 @@ class SharebetweenCest
         $I->amOnSpace1();
 
         $I->amGoingTo('share a public post');
-        $I->waitForText('Post Public', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Post Public', 10, $this->getWallEntrySelector(1));
         $I->see('Share', $this->getAddonsSelector(1));
         $I->click('Share', $this->getAddonsSelector(1));
 
-        $I->waitForText('Share content', null, '#globalModal');
+        $I->waitForText('Share content', 10, '#globalModal');
         $I->selectFromPicker('#globalModal #shareform-spaces', 'Space 2');
         $I->selectFromPicker('#globalModal #shareform-spaces', 'Space 3');
         $I->see('Share this content on your profile stream');
         $I->checkOption('#shareform-onprofile');
         $I->click('Save', '#globalModal');
-        $I->waitForText('Share (3)', null, $this->getAddonsSelector(1));
+        $I->waitForText('Share (3)', 10, $this->getAddonsSelector(1));
 
         $I->amGoingTo('check the post has been shared on the Space 2');
         $I->amOnSpace2();
-        $I->waitForText('Space 1 Space 2 by Admin Tester', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Space 1 Space 2 by Admin Tester', 10, $this->getWallEntrySelector(1));
 
         $I->amGoingTo('check the post has been shared on the Space 3');
         $I->amOnSpace3();
-        $I->waitForText('Space 1 Space 3 by Admin Tester', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Space 1 Space 3 by Admin Tester', 10, $this->getWallEntrySelector(1));
 
         $I->amGoingTo('check the post has been shared on profile page');
         $I->amOnProfile();
-        $I->waitForText('Space 1 Admin Tester by Admin Tester', null, $this->getWallEntrySelector(1));
+        $I->waitForText('Space 1 Admin Tester by Admin Tester', 10, $this->getWallEntrySelector(1));
     }
 
     public function testSharePrivateContent(AcceptanceTester $I)
@@ -89,7 +89,7 @@ class SharebetweenCest
 
         $I->amGoingTo('try to share a private post');
         $I->amOnSpace1();
-        $I->waitForText('Post Private', null, $this->getWallEntrySelector(2));
+        $I->waitForText('Post Private', 10, $this->getWallEntrySelector(2));
         $I->dontSee('Share', $this->getAddonsSelector(2));
     }
 
