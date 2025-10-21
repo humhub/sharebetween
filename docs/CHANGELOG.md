@@ -5,6 +5,7 @@ Changelog
 --------------------
 - Fix #61: Update module resources path
 - Fix #79: Improved Module Test GitHub Actions
+- Fix #81: Implemented `module-coding-standards`
 
 1.1.0 (August 18, 2025)
 -----------------------
