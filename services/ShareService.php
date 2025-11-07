@@ -18,16 +18,10 @@ use Yii;
 use yii\db\Expression;
 use yii\web\IdentityInterface;
 
-final class ShareService
+final readonly class ShareService
 {
-    private ContentActiveRecord $record;
-
-    private IdentityInterface $user;
-
-    public function __construct(ContentActiveRecord $contentRecord, IdentityInterface $user)
+    public function __construct(private ContentActiveRecord $record, private IdentityInterface $user)
     {
-        $this->user = $user;
-        $this->record = $contentRecord;
     }
 
     /**
@@ -45,9 +39,7 @@ final class ShareService
 
     public function shareOnContainerGuids(array $newGuids)
     {
-        $alreadySharedGuids = array_map(function (ContentContainerActiveRecord $record) {
-            return $record->guid;
-        }, $this->list());
+        $alreadySharedGuids = array_map(fn(ContentContainerActiveRecord $record) => $record->guid, $this->list());
 
         // Deleted GUIDs
         foreach (array_diff($alreadySharedGuids, $newGuids) as $guid) {
