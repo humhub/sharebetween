@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.0 (Unreleased)
+--------------------
+- Enh #87: Update activity for HumHub 1.19
+
 1.1.1 (Unreleased)
 --------------------
 - Fix #61: Update module resources path
