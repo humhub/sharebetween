@@ -60,9 +60,9 @@ class Events extends BaseObject
         /* @var Activity $activity */
         $activity = $event->sender;
 
-        if ($activity->object_model === Share::class) {
+        if ($activity->content?->object_model === Share::class) {
             // Switch to render specific text for the shared content activity
-            $activity->class = activities\SharedContentCreated::class;
+            $activity->class = activities\SharedContentActivity::class;
         }
     }
 
