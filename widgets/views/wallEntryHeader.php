@@ -31,5 +31,6 @@ $currentContainer = $model->content->container;
         'userName' => '<strong>' . Html::containerLink($model->content->createdBy, ['class' => 'wall-entry-container-link']) . '</strong>',
     ]) ?>
     &middot;
-    <?= Link::to(TimeAgo::widget(['timestamp' => $model->content->created_at]), $permaLink) ?>
+    <?= Link::to(TimeAgo::widget(['timestamp' => $model->content->created_at]), $permaLink)
+        ->encodeLabel(false) ?>
 </div>
