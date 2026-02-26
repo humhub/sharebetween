@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.1.1 (Unreleased)
---------------------
+1.1.1 (Februrary 26, 2026)
+--------------------------
 - Fix #61: Update module resources path
 - Fix #79: Improved Module Test GitHub Actions
 - Fix #81: Implemented `module-coding-standards`
