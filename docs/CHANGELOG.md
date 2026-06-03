@@ -5,11 +5,12 @@ Changelog
 --------------------
 - Enh #87: Update activity for HumHub 1.19
 
-1.1.1 (Unreleased)
---------------------
+1.1.1 (Februrary 26, 2026)
+--------------------------
 - Fix #61: Update module resources path
 - Fix #79: Improved Module Test GitHub Actions
 - Fix #81: Implemented `module-coding-standards`
+- Fix #90: Labels encoding (see [migration guide](https://github.com/humhub/humhub/blob/master/MIGRATE-DEV.md#version-1181))
 
 1.1.0 (August 18, 2025)
 -----------------------
