@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.1 (Unreleased)
+------------------
+- Fix #91: Forbid sharing of non-shareable content and disabled spaces; Guest search returns 403; Array request params no longer cause 500; Delete shares when the shared content is soft deleted
+
 1.2.0 (June 5, 2026)
 --------------------
 - Enh #87: Update activity for HumHub 1.19

@@ -60,13 +60,33 @@ final readonly class ShareService
         }
     }
 
-    public function canCreate(ContentContainerActiveRecord $container): bool
+    /**
+     * Whether the content can be shared at all (public, published and not a share itself)
+     */
+    public function canShare(): bool
     {
+        if ($this->record instanceof Share) {
+            return false;
+        }
+
         if ($this->record->content->visibility !== Content::VISIBILITY_PUBLIC) {
             return false;
         }
 
-        if (!$this->record->content->getStateService()->isPublished()) {
+        return $this->record->content->getStateService()->isPublished();
+    }
+
+    public function canCreate(ContentContainerActiveRecord $container): bool
+    {
+        if (!$this->canShare()) {
+            return false;
+        }
+
+        if ($container instanceof Space && $container->status !== Space::STATUS_ENABLED) {
+            return false;
+        }
+
+        if ($container instanceof User && $container->status !== User::STATUS_ENABLED) {
             return false;
         }
 
@@ -127,6 +147,7 @@ final readonly class ShareService
         $spaces = Space::find()
             ->visible($this->user)
             ->filterBlockedSpaces($this->user)
+            ->andWhere(['space.status' => Space::STATUS_ENABLED])
             ->search($keyword);
 
         if ($this->record->content->container instanceof Space) {

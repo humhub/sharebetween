@@ -16,18 +16,22 @@ class ShareController extends \humhub\components\Controller
     public function actionIndex()
     {
         if (Yii::$app->user->isGuest) {
-            return $this->forbidden();
+            $this->forbidden();
         }
 
-        $content = Content::findOne(['id' => (int)Yii::$app->request->get('id')]);
-        if (!$content || !$content->canView()) {
-            return $this->forbidden();
+        $content = $this->findContent();
+        if (!$content) {
+            $this->forbidden();
         }
 
         /* @var User $user */
         $user = Yii::$app->user->getIdentity();
 
         $shareService = new ShareService($content->getModel(), $user);
+        if (!$shareService->canShare()) {
+            $this->forbidden();
+        }
+
         $model = new ShareForm();
         foreach ($shareService->list() as $containerActiveRecord) {
             if ($containerActiveRecord instanceof Space) {
@@ -58,16 +62,35 @@ class ShareController extends \humhub\components\Controller
 
     public function actionSearchSpaces()
     {
-        $content = Content::findOne(['id' => (int) Yii::$app->request->get('id')]);
-        if (!$content || !$content->canView()) {
-            return $this->forbidden();
+        if (Yii::$app->user->isGuest) {
+            $this->forbidden();
+        }
+
+        $content = $this->findContent();
+        if (!$content) {
+            $this->forbidden();
         }
 
         $shareService = new ShareService($content->getModel(), Yii::$app->user->getIdentity());
+        if (!$shareService->canShare()) {
+            $this->forbidden();
+        }
 
-        $spaces = $shareService->searchSpaces(Yii::$app->request->get('keyword', ''));
+        $keyword = Yii::$app->request->get('keyword', '');
 
-        return $this->asJson($spaces);
+        return $this->asJson($shareService->searchSpaces(is_string($keyword) ? $keyword : ''));
+    }
+
+    private function findContent(): ?Content
+    {
+        $id = Yii::$app->request->get('id');
+        if (!is_scalar($id)) {
+            return null;
+        }
+
+        $content = Content::findOne(['id' => (int)$id]);
+
+        return ($content && $content->canView()) ? $content : null;
     }
 
 }

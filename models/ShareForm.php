@@ -37,8 +37,13 @@ class ShareForm extends Model
     public function load($data, $formName = null)
     {
         $load = parent::load($data, $formName);
-        if (!is_array($this->spaces)) {
-            $this->spaces = [];
+        // Accept only a list of GUID strings
+        $this->spaces = is_array($this->spaces)
+            ? array_values(array_filter($this->spaces, 'is_string'))
+            : [];
+
+        if (!is_scalar($this->onProfile)) {
+            $this->onProfile = false;
         }
         return $load;
     }
