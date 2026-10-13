@@ -3,6 +3,8 @@
 namespace humhub\modules\sharebetween\codeceptionTest\unit;
 
 use humhub\modules\post\models\Post;
+use humhub\modules\sharebetween\models\Share;
+use humhub\modules\sharebetween\models\ShareForm;
 use humhub\modules\sharebetween\services\ShareService;
 use humhub\modules\space\models\Space;
 use tests\codeception\_support\HumHubDbTestCase;
@@ -97,4 +99,44 @@ class ShareServiceTest extends HumHubDbTestCase
         $this->assertFalse((new ShareService($postUser2Space2Private, Yii::$app->user->getIdentity()))->canCreate($space5));
     }
 
+    public function testCannotShareOnDisabledSpace()
+    {
+        $this->becomeUser('user2');
+        $post = Post::findOne(['id' => 10]);
+        $space3 = Space::findOne(['id' => 3]);
+
+        $shareService = new ShareService($post, Yii::$app->user->getIdentity());
+        $this->assertTrue($shareService->canCreate($space3));
+
+        $space3->status = Space::STATUS_DISABLED;
+        $this->assertFalse($shareService->canCreate($space3));
+    }
+
+    public function testCannotShareAShare()
+    {
+        $this->becomeUser('user2');
+        $post = Post::findOne(['id' => 10]);
+        $space3 = Space::findOne(['id' => 3]);
+
+        $shareService = new ShareService($post, Yii::$app->user->getIdentity());
+        $this->assertTrue($shareService->canShare());
+        $this->assertTrue($shareService->create($space3));
+        $this->becomeUser('user2');
+
+        $share = Share::find()->where(['content_id' => $post->content->id])->one();
+        $this->assertNotNull($share);
+        $this->assertFalse((new ShareService($share, Yii::$app->user->getIdentity()))->canShare());
+    }
+
+    public function testShareFormIgnoresInvalidInput()
+    {
+        $form = new ShareForm();
+        $form->load(['ShareForm' => ['spaces' => ['abc', ['x'], 5], 'onProfile' => ['1']]]);
+        $this->assertSame(['abc'], $form->spaces);
+        $this->assertFalse($form->onProfile);
+
+        $form = new ShareForm();
+        $form->load(['ShareForm' => ['spaces' => 'abc']]);
+        $this->assertSame([], $form->spaces);
+    }
 }

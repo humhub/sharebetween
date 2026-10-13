@@ -4,6 +4,7 @@ Changelog
 1.2.1 (Unreleased)
 ------------------
 - Enh: Automated code refactoring for HumHub 1.19 using Rector
+- Fix #91: Forbid sharing of non-shareable content and disabled spaces; Guest search returns 403; Array request params no longer cause 500; Delete shares when the shared content is soft deleted
 
 1.2.0 (June 5, 2026)
 --------------------

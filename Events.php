@@ -10,10 +10,10 @@ namespace humhub\modules\sharebetween;
 
 use humhub\modules\activity\models\Activity;
 use humhub\modules\content\components\ContentActiveRecord;
-use humhub\modules\content\events\ContentEvent;
 use humhub\modules\notification\models\Notification;
 use humhub\modules\sharebetween\models\Share;
 use yii\base\BaseObject;
+use yii\base\ModelEvent;
 
 class Events extends BaseObject
 {
@@ -32,13 +32,14 @@ class Events extends BaseObject
         }
     }
 
-    public static function onContentAfterSoftDelete(ContentEvent $event)
+    public static function onContentAfterSoftDelete(ModelEvent $event)
     {
-        if ($event->content->object_model === Share::class) {
+        $record = $event->sender;
+        if (!$record instanceof ContentActiveRecord || $record instanceof Share) {
             return;
         }
 
-        $shares = models\Share::findAll(['content_id' => $event->content->id]);
+        $shares = models\Share::findAll(['content_id' => $record->content->id]);
         foreach ($shares as $share) {
             $share->hardDelete();
         }
