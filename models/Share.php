@@ -53,10 +53,8 @@ class Share extends ContentActiveRecord
 
     public function getShareService(?IdentityInterface $user): ShareService
     {
-        if ($user === null) {
-            /** @var IdentityInterface $user */
-            $user = Yii::$app->user->getIdentity();
-        }
+        /** @var IdentityInterface $user */
+        $user ??= Yii::$app->user->getIdentity();
 
         return new ShareService($this->getContentRecord(), $user);
     }
