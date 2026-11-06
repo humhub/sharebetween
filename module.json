@@ -9,7 +9,8 @@
     ],
     "version": "1.2.1",
     "humhub": {
-        "minVersion": "1.19"
+        "minVersion": "1.19",
+        "maxVersion": "1.19"
     },
     "screenshots": [
         "resources/screen1.png",
