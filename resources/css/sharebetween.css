@@ -6,7 +6,7 @@
   border-bottom: 2px solid var(--bs-border-color);
 }
 .panel.sharebetween-wall-entry > .panel-body > .wall-entry-header-info a {
-  color: var(--hh-text-color-main);
+  color: var(--bs-body-color);
 }
 .panel.sharebetween-wall-entry > .panel-body > .wall-entry {
   margin-top: 10px;

@@ -7,9 +7,9 @@
         "between",
         "content"
     ],
-    "version": "1.2.1",
+    "version": "1.3.0",
     "humhub": {
-        "minVersion": "1.19"
+        "minVersion": "1.20"
     },
     "screenshots": [
         "resources/screen1.png",
