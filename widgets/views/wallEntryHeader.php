@@ -20,7 +20,7 @@ use humhub\widgets\TimeAgo;
 $sourceContainer = $model->getContentRecord()->content->container;
 $currentContainer = $model->content->container;
 ?>
-<div class="wall-entry-header-info flex-grow-1">
+<div class="wall-entry-header-info flex-grow-1" id="<?= Html::encode($this->context->getTitleId()) ?>">
     <?= Icon::get('share') ?>
     <?= $sourceContainer instanceof ContentContainerActiveRecord
         ? Link::to($sourceContainer->getDisplayName(), $sourceContainer->createUrl())

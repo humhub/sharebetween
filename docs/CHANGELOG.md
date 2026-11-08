@@ -3,6 +3,7 @@ Changelog
 
 1.3.0 (Unreleased)
 ------------------
+- Fix: A shared entry in the stream is named by its header for assistive technology (humhub/humhub#8733)
 - Enh: Colour tokens of the core 1.20 instead of the deprecated ones (humhub/humhub#8707)
 
 1.2.1 (October 13, 2026)
