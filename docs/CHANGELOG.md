@@ -5,6 +5,7 @@ Changelog
 ------------------
 - Fix: A shared entry in the stream is named by its header for assistive technology (humhub/humhub#8733)
 - Enh: Colour tokens of the core 1.20 instead of the deprecated ones (humhub/humhub#8707)
+- Enh: Compatibility with the notification API of the core 1.20 (humhub/humhub#8576)
 
 1.2.1 (October 13, 2026)
 ------------------------

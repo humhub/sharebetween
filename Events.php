@@ -10,6 +10,7 @@ namespace humhub\modules\sharebetween;
 
 use humhub\modules\activity\models\Activity;
 use humhub\modules\content\components\ContentActiveRecord;
+use humhub\modules\content\notifications\ContentCreatedNotification;
 use humhub\modules\notification\models\Notification;
 use humhub\modules\sharebetween\models\Share;
 use yii\base\BaseObject;
@@ -72,9 +73,11 @@ class Events extends BaseObject
         /* @var Notification $activity */
         $notification = $event->sender;
 
-        if ($notification->source_class === Share::class) {
+        if ($notification->class === ContentCreatedNotification::class && $notification->content?->object_model === Share::class) {
             // Switch to render specific text for the shared content notification
             $notification->class = notifications\SharedContentCreated::class;
+            // The switched class is not stored when the record is saved
+            $notification->setOldAttribute('class', $notification->class);
         }
     }
 }
