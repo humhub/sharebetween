@@ -64,7 +64,7 @@ class Share extends ContentActiveRecord
      */
     public function getIcon()
     {
-        return 'fa-share-alt';
+        return 'share';
     }
 
     /**
