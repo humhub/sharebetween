@@ -19,4 +19,5 @@ return [
     '{displayName} shared something interesting from Space {space}.' => '',
     '{displayName} shared something interesting from dashboard.' => '',
     '{displayName} shared something interesting from user {sourceUser}.' => '',
+    '{displayName} shared {groupCount} new entries.' => '',
 ];

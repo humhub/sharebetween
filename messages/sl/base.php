@@ -15,6 +15,7 @@ return [
     '{displayName} shared something interesting from Space {space}.' => '',
     '{displayName} shared something interesting from dashboard.' => '',
     '{displayName} shared something interesting from user {sourceUser}.' => '',
+    '{displayName} shared {groupCount} new entries.' => '',
     '{spaceName} by {userName}' => '',
     '{user} shared something interesting from Space {space}.' => '',
     '{user} shared something interesting from dashboard.' => '',
