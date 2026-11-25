@@ -1,6 +1,3 @@
-.card.sharebetween-wall-entry > .card-body {
-  padding: 0.5rem;
-}
 .card.sharebetween-wall-entry > .card-body > .wall-entry-header-info {
   padding-bottom: 0.25rem;
   border-bottom: 2px solid var(--bs-border-color);
