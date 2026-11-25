@@ -16,8 +16,8 @@ use humhub\components\View;
 
 Assets::register($this);
 ?>
-<div class="panel panel-default sharebetween-wall-entry wall_<?= $model->getUniqueId() ?>">
-    <div class="panel-body">
+<div class="card content-card sharebetween-wall-entry wall_<?= $model->getUniqueId() ?>">
+    <div class="card-body">
         <?= $header ?>
         <?= $content ?>
     </div>

@@ -1,20 +1,20 @@
-.panel.sharebetween-wall-entry > .panel-body {
-  padding: 10px;
+.card.sharebetween-wall-entry > .card-body {
+  padding: 0.5rem;
 }
-.panel.sharebetween-wall-entry > .panel-body > .wall-entry-header-info {
-  padding-bottom: 5px;
+.card.sharebetween-wall-entry > .card-body > .wall-entry-header-info {
+  padding-bottom: 0.25rem;
   border-bottom: 2px solid var(--bs-border-color);
 }
-.panel.sharebetween-wall-entry > .panel-body > .wall-entry-header-info a {
+.card.sharebetween-wall-entry > .card-body > .wall-entry-header-info a {
   color: var(--bs-body-color);
 }
-.panel.sharebetween-wall-entry > .panel-body > .wall-entry {
-  margin-top: 10px;
+.card.sharebetween-wall-entry > .card-body > .wall-entry {
+  margin-top: 0.5rem;
 }
-.panel.sharebetween-wall-entry > .panel-body > .wall-entry > .panel {
+.card.sharebetween-wall-entry > .card-body > .wall-entry > .card {
   margin: 0;
   box-shadow: none;
 }
-.panel.sharebetween-wall-entry > .panel-body > .wall-entry > .panel > .panel-body {
+.card.sharebetween-wall-entry > .card-body > .wall-entry > .card > .card-body {
   padding: 0;
 }
